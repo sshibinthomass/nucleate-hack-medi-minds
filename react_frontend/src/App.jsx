@@ -13,8 +13,8 @@ export default function App() {
   const [error, setError] = useState("");
   const [resetting, setResetting] = useState(false);
   const [sessionId, setSessionId] = useState("default");
-  const [provider, setProvider] = useState("groq");
-  const [model, setModel] = useState(() => MODEL_OPTIONS.groq[0].value);
+  const [provider, setProvider] = useState("openai");
+  const [model, setModel] = useState(() => MODEL_OPTIONS.openai[0].value);
   const [useCase, setUseCase] = useState(() => USE_CASES[0]?.value ?? "mcp_chatbot");
   const [backendStatus, setBackendStatus] = useState("checking");
   const [backendStatusMessage, setBackendStatusMessage] = useState("Checking backend...");

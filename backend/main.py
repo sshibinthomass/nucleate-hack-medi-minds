@@ -57,14 +57,14 @@ async def load_mcp_tools():
 
 
 async def initialize_chatbot():
-    """Initialize the chatbot graph with Groq LLM"""
+    """Initialize the chatbot graph with OpenAI LLM"""
     global chatbot_graph
     try:
         user_controls_input = {
-            "GROQ_API_KEY": os.getenv("GROQ_API_KEY"),
-            "selected_llm": "openai/gpt-oss-20b",
+            "OPENAI_API_KEY": os.getenv("OPENAI_API_KEY"),
+            "selected_llm": "gpt-4o-mini",
         }
-        llm = GroqLLM(user_controls_input)
+        llm = OpenAiLLM(user_controls_input)
         llm = llm.get_base_llm()
         graph_builder = GraphBuilder(llm, user_controls_input)
         # Load MCP tools for initialization
@@ -123,7 +123,7 @@ class ChatResponse(BaseModel):
 class SimpleChatRequest(BaseModel):
     message: str
     session_id: Optional[str] = "default"
-    provider: Optional[str] = "groq"  # groq | openai | gemini | ollama
+    provider: Optional[str] = "openai"  # groq | openai | gemini | ollama
     selected_llm: Optional[str] = None
     use_case: Optional[str] = "mcp_chatbot"
 
@@ -159,7 +159,7 @@ async def chat_simple(request: SimpleChatRequest):
     try:
         # Choose LLM based on provider/model from request
         print("request-----", request)
-        provider = (request.provider or "groq").lower()
+        provider = (request.provider or "openai").lower()
         selected_llm = request.selected_llm
         if provider == "groq":
             user_controls_input = {

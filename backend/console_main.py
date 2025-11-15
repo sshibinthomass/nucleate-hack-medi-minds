@@ -87,7 +87,7 @@ def get_llm(provider: str, selected_llm: Optional[str] = None):
 
 async def chat(
     message: str,
-    provider: str = "groq",
+    provider: str = "openai",
     use_case: str = "mcp_chatbot",
     session_id: str = "default",
     selected_llm: Optional[str] = None,
@@ -173,7 +173,7 @@ def print_menu():
 
 
 async def interactive_chat(
-    provider: str = "groq", use_case: str = "mcp_chatbot", session_id: str = "default"
+    provider: str = "openai", use_case: str = "mcp_chatbot", session_id: str = "default"
 ):
     """Interactive chat loop"""
     print(f"\n{'=' * 60}")
@@ -269,7 +269,7 @@ async def main():
     await load_mcp_tools_global()
 
     # Default settings
-    current_provider = "groq"
+    current_provider = "openai"
     current_use_case = "mcp_chatbot"
     current_session_id = "default"
 
