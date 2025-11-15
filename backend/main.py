@@ -92,8 +92,8 @@ async def lifespan(app: FastAPI):
 
 # Initialize FastAPI app
 app = FastAPI(
-    title="Agentic Base React Backend",
-    description="FastAPI backend for the Agentic Base React application",
+    title="Medi-Mind Backend",
+    description="FastAPI backend for the Medi-Mind medical assistant application",
     version="0.1.0",
     lifespan=lifespan,
 )
@@ -134,7 +134,7 @@ class ResetChatRequest(BaseModel):
 @app.get("/")
 async def root():
     """Root endpoint"""
-    return {"message": "Agentic Base React Backend API", "status": "running"}
+    return {"message": "Medi-Mind Backend API", "status": "running"}
 
 
 @app.get("/health")
@@ -213,7 +213,7 @@ async def chat_simple(request: SimpleChatRequest):
             session_store[session_key] = []
 
         # Build messages from stored history and current input
-        messages = [SystemMessage(content="You are a helpful and efficient assistant.")]
+        messages = [SystemMessage(content="You are Medi-Mind, a personal medical assistant. You help users manage their medical details, track health information, answer medical questions, and provide health-related guidance. Always be empathetic, professional, and prioritize user safety. Remind users that you are not a substitute for professional medical advice.")]
         messages.extend(session_store[session_key])
         user_msg = HumanMessage(content=request.message)
         messages.append(user_msg)

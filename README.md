@@ -1,12 +1,12 @@
-# Agentic Base React
+# Medi-Mind
 
-A full-stack chatbot application with a React frontend and FastAPI backend, supporting multiple LLM providers (Groq, OpenAI, Gemini, and Ollama).
+A personal medical assistant application with a React frontend and FastAPI backend, designed to help users manage their medical details and health information. Supports multiple LLM providers (Groq, OpenAI, Gemini, and Ollama).
 
 ## Features
 
 - 🤖 Multiple LLM provider support (Groq, OpenAI, Gemini, Ollama)
 - 💬 Interactive chat interface with markdown rendering
-- 🎯 Multiple use cases (Basic Chatbot, Weather Chatbot, etc.)
+- 🎯 Medical assistant features for managing health information
 - 🔄 Session-based conversation history management
 - 📱 Responsive UI with collapsible sidebar
 - 🎨 Modern, clean design
@@ -27,7 +27,7 @@ A full-stack chatbot application with a React frontend and FastAPI backend, supp
 
 ```bash
 git clone <repository-url>
-cd Agentic-Base-React
+cd nucleate-hack-medi-minds
 ```
 
 ### 2. Backend Setup
@@ -108,7 +108,7 @@ The frontend will be available at `http://localhost:5173`
 ## Project Structure
 
 ```
-Agentic-Base-React/
+Medi-Mind/
 ├── backend/
 │   ├── main.py                 # FastAPI application
 │   ├── configurations.py       # Configuration settings
@@ -134,7 +134,7 @@ Agentic-Base-React/
 
 ## Usage
 
-1. **Select a Use Case**: Choose from the dropdown (e.g., Basic Chatbot, Weather Chatbot)
+1. **Select a Use Case**: Choose from the dropdown (e.g., Medical Assistant, Health Tracker)
 2. **Choose a Provider**: Select your preferred LLM provider (Groq, OpenAI, Gemini, or Ollama)
 3. **Select a Model**: Pick a specific model from the selected provider
 4. **Start Chatting**: Type your message and press Enter or click Send

@@ -18,7 +18,7 @@ if str(project_root) not in sys.path:
     sys.path.insert(0, str(project_root))
 
 from langgraph_agent.states.chatbotState import ChatbotState
-from langgraph_agent.prompts import get_scout_system_prompt
+from langgraph_agent.prompts import get_medi_mind_system_prompt
 from langgraph_agent.mcps.config import mcp_config
 
 load_dotenv()
@@ -60,8 +60,8 @@ class MCPChatbotNode:
 
         # Add system prompt if tools are available and not already present
         if self.tools:
-            # Use the Scout system prompt when tools are available (like in graph.py)
-            system_prompt = get_scout_system_prompt(
+            # Use the Medi-Mind system prompt when tools are available
+            system_prompt = get_medi_mind_system_prompt(
                 working_dir=os.environ.get("MCP_FILESYSTEM_DIR", ""),
             )
             # Prepend system message if not already present
@@ -222,7 +222,7 @@ if __name__ == "__main__":
         # Create state with user message
         state = {
             "messages": [
-                SystemMessage(content="You are a helpful and efficient assistant."),
+                SystemMessage(content="You are Medi-Mind, a personal medical assistant. You help users manage their medical details, track health information, answer medical questions, and provide health-related guidance. Always be empathetic, professional, and prioritize user safety. Remind users that you are not a substitute for professional medical advice."),
                 HumanMessage(content=user_input),
             ]
         }

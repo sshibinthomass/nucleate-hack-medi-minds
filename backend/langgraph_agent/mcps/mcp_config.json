@@ -3,7 +3,7 @@
         "dataflow": {
             "command": "python",
             "args": [
-                "/Users/qtf4195/Github_Projects/Agentic-Base-React/backend/langgraph_agent/mcps/local_servers/dataflow.py"
+                "/Users/qtf4195/nucleate-hack-medi-minds/backend/langgraph_agent/mcps/local_servers/dataflow.py"
             ],
             "transport": "stdio"
         },
@@ -20,35 +20,6 @@
             "command": "uvx",
             "args": [
                 "mcp-server-git"
-            ],
-            "transport": "stdio"
-        },
-        "github": {
-            "command": "docker",
-            "args": [
-                "run",
-                "-i",
-                "--rm",
-                "-e",
-                "GITHUB_PERSONAL_ACCESS_TOKEN",
-                "ghcr.io/github/github-mcp-server"
-            ],
-            "env": {
-                "GITHUB_PERSONAL_ACCESS_TOKEN": "${MCP_GITHUB_PAT}"
-            },
-            "transport": "stdio"
-        },
-        "arxiv-mcp-server-gpt": {
-            "command": "npx",
-            "args": [
-              "-y",
-              "@smithery/cli@latest",
-              "run",
-              "@lecigarevolant/arxiv-mcp-server-gpt",
-              "--key",
-              "2a2bed04-d517-4c23-8d36-90f3fff30ad8",
-              "--profile",
-              "external-falcon-AVl9Oq"
             ],
             "transport": "stdio"
         },

@@ -65,7 +65,7 @@ export function ChatWindow({
 
         <div className="chat-messages">
           {conversation.length === 0 && (
-            <div className="chat-empty">Start the conversation below</div>
+            <div className="chat-empty">👋 Welcome to Medi-Mind! How can I help you with your health today?</div>
           )}
 
           {conversation.map((msg, index) => (
@@ -92,7 +92,7 @@ export function ChatWindow({
         <form className="chat-form" onSubmit={handleSubmit}>
           <input
             className="chat-input"
-            placeholder="Type your message…"
+            placeholder="Ask about your health, medications, symptoms, or medical records…"
             disabled={resetting}
             ref={inputRef}
           />

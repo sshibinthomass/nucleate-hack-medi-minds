@@ -115,7 +115,11 @@ async def chat(
             session_store[session_key] = []
 
         # Build messages from stored history and current input
-        messages = [SystemMessage(content="You are a helpful and efficient assistant.")]
+        messages = [
+            SystemMessage(
+                content="You are Medi-Mind, a personal medical assistant. You help users manage their medical details, track health information, answer medical questions, and provide health-related guidance. Always be empathetic, professional, and prioritize user safety. Remind users that you are not a substitute for professional medical advice."
+            )
+        ]
         messages.extend(session_store[session_key])
         user_msg = HumanMessage(content=message)
         messages.append(user_msg)
@@ -262,7 +266,7 @@ async def test_mcp_tools():
 async def main():
     """Main console application"""
     print("\n" + "=" * 60)
-    print("AGENTIC BASE REACT - CONSOLE TESTER")
+    print("MEDI-MIND - CONSOLE TESTER")
     print("=" * 60)
 
     # Load MCP tools at startup

@@ -66,7 +66,7 @@ if __name__ == "__main__":
     # Example conversation history
     state = {
         "messages": [
-            SystemMessage(content="You are a helpful and efficient assistant."),
+            SystemMessage(content="You are Medi-Mind, a personal medical assistant. You help users manage their medical details, track health information, answer medical questions, and provide health-related guidance. Always be empathetic, professional, and prioritize user safety. Remind users that you are not a substitute for professional medical advice."),
             HumanMessage(content="Hi"),
         ]
     }

@@ -30,7 +30,8 @@ export function Sidebar({
 
   return (
     <aside className="sidebar">
-      <h1 className="sidebar__title">{activeUseCaseLabel}</h1>
+      <h1 className="sidebar__title">Medi-Mind</h1>
+      <p className="sidebar__subtitle">Your Personal Medical Assistant</p>
       <div className="sidebar__form">
         <label className="sidebar__label">
           Use Case
