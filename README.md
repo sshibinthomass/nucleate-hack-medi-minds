@@ -17,8 +17,8 @@ The platform bridges the gap between patients and healthcare providers by offeri
 ## Team Members
 
 - **Shibin Thomas**
-- **Manan Jigesh**
-- **Elison**
+- **Manan Jignesh Shah**
+- **Elison Jusufati**
 
 ## Features
 
