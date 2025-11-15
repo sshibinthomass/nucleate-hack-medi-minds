@@ -1,0 +1,232 @@
+[
+  {
+    "id": "PAT00001",
+    "name": "Anna Braun",
+    "date_of_birth": "1984-08-26",
+    "gender": "Other",
+    "phone": "+49-298-7148182",
+    "email": "anna.braun@email.de",
+    "address": "352 Main St, Munich",
+    "emergency_contact": "Laura Koch",
+    "emergency_phone": "+49-989-5304626",
+    "blood_type": "AB-",
+    "allergies": [
+      "Lactose",
+      "Pollen"
+    ],
+    "chronic_conditions": [
+      "None"
+    ],
+    "current_medications": [
+      "Metformin"
+    ],
+    "insurance_provider": "AOK",
+    "insurance_id": "INS311095"
+  },
+  {
+    "id": "PAT00002",
+    "name": "Hans Gruber",
+    "date_of_birth": "1953-02-18",
+    "gender": "Other",
+    "phone": "+49-505-4258243",
+    "email": "hans.gruber@email.de",
+    "address": "501 Oak St, Munich",
+    "emergency_contact": "Hans Gruber",
+    "emergency_phone": "+49-871-9145369",
+    "blood_type": "AB-",
+    "allergies": [],
+    "chronic_conditions": [
+      "Diabetes",
+      "None"
+    ],
+    "current_medications": [],
+    "insurance_provider": "TK",
+    "insurance_id": "INS918249"
+  },
+  {
+    "id": "PAT00003",
+    "name": "Klaus Meyer",
+    "date_of_birth": "1977-10-14",
+    "gender": "Other",
+    "phone": "+49-416-6266622",
+    "email": "klaus.meyer@email.de",
+    "address": "106 Main St, Munich",
+    "emergency_contact": "Laura Koch",
+    "emergency_phone": "+49-191-2395104",
+    "blood_type": "B-",
+    "allergies": [
+      "Penicillin"
+    ],
+    "chronic_conditions": [],
+    "current_medications": [
+      "None"
+    ],
+    "insurance_provider": "AOK",
+    "insurance_id": "INS736369"
+  },
+  {
+    "id": "PAT00004",
+    "name": "Sophie Wagner",
+    "date_of_birth": "1974-09-20",
+    "gender": "Male",
+    "phone": "+49-435-9724802",
+    "email": "sophie.wagner@email.de",
+    "address": "881 Pine St, Munich",
+    "emergency_contact": "Sophie Wagner",
+    "emergency_phone": "+49-118-7874027",
+    "blood_type": "A+",
+    "allergies": [
+      "Penicillin"
+    ],
+    "chronic_conditions": [],
+    "current_medications": [
+      "Lisinopril"
+    ],
+    "insurance_provider": "TK",
+    "insurance_id": "INS830815"
+  },
+  {
+    "id": "PAT00005",
+    "name": "Klaus Meyer",
+    "date_of_birth": "1970-11-10",
+    "gender": "Male",
+    "phone": "+49-425-4392736",
+    "email": "klaus.meyer@email.de",
+    "address": "515 Main St, Munich",
+    "emergency_contact": "Laura Koch",
+    "emergency_phone": "+49-696-2813424",
+    "blood_type": "A-",
+    "allergies": [
+      "Lactose"
+    ],
+    "chronic_conditions": [
+      "None",
+      "Hypertension"
+    ],
+    "current_medications": [
+      "None",
+      "Aspirin"
+    ],
+    "insurance_provider": "AOK",
+    "insurance_id": "INS111568"
+  },
+  {
+    "id": "PAT00006",
+    "name": "Hans Gruber",
+    "date_of_birth": "2006-09-03",
+    "gender": "Male",
+    "phone": "+49-768-6231977",
+    "email": "hans.gruber@email.de",
+    "address": "147 Main St, Munich",
+    "emergency_contact": "Sophie Wagner",
+    "emergency_phone": "+49-914-3686819",
+    "blood_type": "AB-",
+    "allergies": [
+      "Nuts",
+      "Penicillin"
+    ],
+    "chronic_conditions": [
+      "Hypertension"
+    ],
+    "current_medications": [],
+    "insurance_provider": "DAK",
+    "insurance_id": "INS725854"
+  },
+  {
+    "id": "PAT00007",
+    "name": "Maria Fischer",
+    "date_of_birth": "1959-06-14",
+    "gender": "Other",
+    "phone": "+49-225-1820042",
+    "email": "maria.fischer@email.de",
+    "address": "219 Maple St, Munich",
+    "emergency_contact": "Felix Bauer",
+    "emergency_phone": "+49-692-7669521",
+    "blood_type": "O-",
+    "allergies": [
+      "Nuts",
+      "Pollen"
+    ],
+    "chronic_conditions": [
+      "Hypertension"
+    ],
+    "current_medications": [
+      "None"
+    ],
+    "insurance_provider": "Barmer",
+    "insurance_id": "INS306813"
+  },
+  {
+    "id": "PAT00008",
+    "name": "Felix Bauer",
+    "date_of_birth": "1954-04-17",
+    "gender": "Female",
+    "phone": "+49-986-3373784",
+    "email": "felix.bauer@email.de",
+    "address": "533 Main St, Munich",
+    "emergency_contact": "Anna Braun",
+    "emergency_phone": "+49-529-2881405",
+    "blood_type": "O-",
+    "allergies": [
+      "Lactose"
+    ],
+    "chronic_conditions": [
+      "Asthma",
+      "Hypertension"
+    ],
+    "current_medications": [
+      "None"
+    ],
+    "insurance_provider": "DAK",
+    "insurance_id": "INS305531"
+  },
+  {
+    "id": "PAT00009",
+    "name": "Maria Fischer",
+    "date_of_birth": "1975-07-03",
+    "gender": "Other",
+    "phone": "+49-211-8212016",
+    "email": "maria.fischer@email.de",
+    "address": "243 Pine St, Munich",
+    "emergency_contact": "Maria Fischer",
+    "emergency_phone": "+49-893-8725575",
+    "blood_type": "B+",
+    "allergies": [],
+    "chronic_conditions": [
+      "Diabetes",
+      "None"
+    ],
+    "current_medications": [
+      "Aspirin",
+      "None"
+    ],
+    "insurance_provider": "DAK",
+    "insurance_id": "INS584345"
+  },
+  {
+    "id": "PAT00010",
+    "name": "Klaus Meyer",
+    "date_of_birth": "1971-06-28",
+    "gender": "Male",
+    "phone": "+49-611-7708145",
+    "email": "klaus.meyer@email.de",
+    "address": "965 Main St, Munich",
+    "emergency_contact": "Sophie Wagner",
+    "emergency_phone": "+49-266-7907623",
+    "blood_type": "B-",
+    "allergies": [
+      "Nuts",
+      "Lactose"
+    ],
+    "chronic_conditions": [
+      "Asthma",
+      "Diabetes"
+    ],
+    "current_medications": [
+      "Metformin",
+      "Lisinopril"
+    ],
+    "insurance_provider": "Barmer",
+    "insurance_id": "INS960537"
+  }
+]
