@@ -309,7 +309,14 @@ export function Sidebar({
       ) : (
         <div className="health-widgets">
           <div className="health-widgets__row">
-            <div className={`health-widget ${isBelowLimit('steps', healthData.steps) ? 'health-widget--alert' : ''}`}>
+            <div className={`health-widget ${isBelowLimit('steps', healthData.steps) ? 'health-widget--alert' : ''}`}
+              onClick={() => {
+                var w=window.open('./steps_plot.html','stepsPopup','width=900,height=600,resizable=yes,scrollbars=yes'); 
+                if(w) w.focus(); 
+                else alert('Popup blocked — please allow popups or open ./steps_plot.html directly');
+              }}
+              style={{ cursor: 'pointer' }}
+            >
               <div className="health-widget__icon">👣</div>
               <div className="health-widget__content">
                 <div className="health-widget__label">Steps</div>
@@ -318,7 +325,15 @@ export function Sidebar({
                 </div>
               </div>
             </div>
-            <div className={`health-widget ${isBelowLimit('calories_kcal', healthData.calories_kcal) ? 'health-widget--alert' : ''}`}>
+            <div className={`health-widget ${isBelowLimit('calories_kcal', healthData.calories_kcal) ? 'health-widget--alert' : ''}`}
+            onClick={() => {
+              var w=window.open('./calories_plot.html','stepsPopup','width=900,height=600,resizable=yes,scrollbars=yes'); 
+              if(w) w.focus(); 
+              else alert('Popup blocked — please allow popups or open ./steps_plot.html directly');
+            }}
+            style={{ cursor: 'pointer' }}
+            
+            >
               <div className="health-widget__icon">🔥</div>
               <div className="health-widget__content">
                 <div className="health-widget__label">Calories</div>
@@ -330,16 +345,31 @@ export function Sidebar({
           </div>
 
           <div className="health-widgets__row">
-            <div className={`health-widget ${isBelowLimit('blood_oxygen_spo2_percent', healthData.blood_oxygen_spo2_percent) ? 'health-widget--alert' : ''}`}>
+            <div className={`health-widget ${isBelowLimit('blood_oxygen_spo2_percent', healthData.blood_oxygen_spo2_percent) ? 'health-widget--alert' : ''}`}
+            onClick={() => {
+              var w=window.open('./spo2_plot.html','stepsPopup','width=900,height=600,resizable=yes,scrollbars=yes'); 
+              if(w) w.focus(); 
+              else alert('Popup blocked — please allow popups or open ./steps_plot.html directly');
+            }}
+            style={{ cursor: 'pointer' }}
+            >
               <div className="health-widget__icon">🫁</div>
               <div className="health-widget__content">
                 <div className="health-widget__label">Blood O₂</div>
-                <div className={`health-widget__value ${isBelowLimit('blood_oxygen_spo2_percent', healthData.blood_oxygen_spo2_percent) ? 'health-widget__value--alert' : ''}`}>
+                <div className={`health-widget__value ${isBelowLimit('blood_oxygen_spo2_percent', healthData.blood_oxygen_spo2_percent) ? 'health-widget__value--alert' : ''}`}
+                >
                   {healthData.blood_oxygen_spo2_percent || 0}%
                 </div>
               </div>
             </div>
-            <div className={`health-widget ${isBelowLimit('heart_rate_bpm', healthData.heart_rate_bpm) ? 'health-widget--alert' : ''}`}>
+            <div className={`health-widget ${isBelowLimit('heart_rate_bpm', healthData.heart_rate_bpm) ? 'health-widget--alert' : ''}`}
+            onClick={() => {
+              var w=window.open('./heart_rate_plot.html','stepsPopup','width=900,height=600,resizable=yes,scrollbars=yes'); 
+              if(w) w.focus(); 
+              else alert('Popup blocked — please allow popups or open ./steps_plot.html directly');
+            }}
+            style={{ cursor: 'pointer' }}
+            >
               <div className="health-widget__icon health-widget__icon--heart">❤️</div>
               <div className="health-widget__content">
                 <div className="health-widget__label">Heart</div>
@@ -351,7 +381,14 @@ export function Sidebar({
           </div>
 
           <div className="health-widgets__row">
-            <div className={`health-widget health-widget--water ${isBelowLimit('Water_Intake_cups', healthData.Water_Intake_cups) ? 'health-widget--alert' : ''}`}>
+            <div className={`health-widget health-widget--water ${isBelowLimit('Water_Intake_cups', healthData.Water_Intake_cups) ? 'health-widget--alert' : ''}`}
+            onClick={() => {
+              var w=window.open('./water_ml_plot.html','stepsPopup','width=900,height=600,resizable=yes,scrollbars=yes'); 
+              if(w) w.focus(); 
+              else alert('Popup blocked — please allow popups or open ./steps_plot.html directly');
+            }}
+            style={{ cursor: 'pointer' }}
+            >
               <div className="health-widget__icon">💧</div>
               <div className="health-widget__content">
                 <div className="health-widget__label">Water</div>

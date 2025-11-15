@@ -17,8 +17,8 @@
       "screen_time_minutes": 192,
       "alarm_time": "06:45",
       "reminders_count": 3,
-      "temperature_c": 10,
-      "humidity_percent": 78,
-      "wind_kmh": 5,
+      "temperature_c": 5,
+      "humidity_percent": 60,
+      "wind_kmh": 9,
       "gender": "male"
 }

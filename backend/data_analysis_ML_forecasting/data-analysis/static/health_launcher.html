@@ -1,0 +1,227 @@
+<!doctype html>
+<html>
+<head>
+<meta charset='utf-8'>
+<title>Health Dashboard</title>
+<link href='https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap' rel='stylesheet'>
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  min-height: 100vh;
+  padding: 40px 20px;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+h1 {
+  color: white;
+  font-size: 42px;
+  font-weight: 800;
+  text-align: center;
+  margin-bottom: 16px;
+  text-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.intro {
+  color: rgba(255, 255, 255, 0.95);
+  text-align: center;
+  font-size: 16px;
+  margin-bottom: 12px;
+  font-weight: 500;
+}
+
+.forecast-note {
+  color: rgba(255, 255, 255, 0.85);
+  text-align: center;
+  font-size: 14px;
+  margin-bottom: 40px;
+  font-weight: 500;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+  margin-bottom: 32px;
+}
+
+.metric-card {
+  background: white;
+  padding: 28px;
+  border-radius: 16px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+  text-align: center;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.metric-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--color-main), var(--color-accent));
+}
+
+.metric-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+}
+
+.metric-icon {
+  font-size: 48px;
+  margin-bottom: 16px;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
+}
+
+.metric-title {
+  font-weight: 700;
+  font-size: 20px;
+  color: #1f2937;
+  margin-bottom: 16px;
+  letter-spacing: 0.3px;
+}
+
+.open-btn {
+  width: 100%;
+  padding: 14px 24px;
+  font-size: 15px;
+  font-weight: 600;
+  color: white;
+  background: linear-gradient(135deg, var(--color-main), var(--color-accent));
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  letter-spacing: 0.5px;
+}
+
+.open-btn:hover {
+  transform: scale(1.02);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+.metric-note {
+  margin-top: 12px;
+  color: #9ca3af;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.footer {
+  text-align: center;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 13px;
+  margin-top: 32px;
+  font-weight: 500;
+}
+
+/* Metric-specific colors */
+.steps-card { --color-main: #10B981; --color-accent: #059669; }
+.calories-card { --color-main: #F59E0B; --color-accent: #D97706; }
+.heart-card { --color-main: #EF4444; --color-accent: #DC2626; }
+.spo2-card { --color-main: #8B5CF6; --color-accent: #7C3AED; }
+.sleep-card { --color-main: #6366F1; --color-accent: #4F46E5; }
+.water-card { --color-main: #3B82F6; --color-accent: #2563EB; }
+
+@media (max-width: 768px) {
+  h1 { font-size: 32px; }
+  .grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>🏥 Health Dashboard</h1>
+  <p class="intro">Click any metric card to explore interactive visualizations</p>
+  <p class="forecast-note">📊 All forecasts show future values with ML-powered predictions</p>
+  <div class="grid">
+
+    <div class="metric-card steps-card" onclick="(function(){
+      var w=window.open('./steps_plot.html','stepsPopup','width=900,height=600,resizable=yes,scrollbars=yes'); 
+      if(w) w.focus(); 
+      else alert('⚠️ Popup blocked — please allow popups or open ./steps_plot.html directly');
+    })()">
+      <div class="metric-icon">🚶</div>
+      <div class="metric-title">Steps</div>
+      <button class="open-btn">View Dashboard</button>
+      <div class="metric-note">steps_plot.html</div>
+    </div>
+
+    <div class="metric-card calories-card" onclick="(function(){
+      var w=window.open('./calories_plot.html','caloriesPopup','width=1000,height=640,resizable=yes,scrollbars=yes'); 
+      if(w) w.focus(); 
+      else alert('⚠️ Popup blocked — please allow popups or open ./calories_plot.html directly');
+    })()">
+      <div class="metric-icon">🔥</div>
+      <div class="metric-title">Calories</div>
+      <button class="open-btn">View Dashboard</button>
+      <div class="metric-note">calories_plot.html</div>
+    </div>
+
+    <div class="metric-card heart-card" onclick="(function(){
+      var w=window.open('./heart_rate_plot.html','heart_ratePopup','width=1000,height=640,resizable=yes,scrollbars=yes'); 
+      if(w) w.focus(); 
+      else alert('⚠️ Popup blocked — please allow popups or open ./heart_rate_plot.html directly');
+    })()">
+      <div class="metric-icon">❤️</div>
+      <div class="metric-title">Heart Rate</div>
+      <button class="open-btn">View Dashboard</button>
+      <div class="metric-note">heart_rate_plot.html</div>
+    </div>
+
+    <div class="metric-card spo2-card" onclick="(function(){
+      var w=window.open('./spo2_plot.html','spo2Popup','width=900,height=600,resizable=yes,scrollbars=yes'); 
+      if(w) w.focus(); 
+      else alert('⚠️ Popup blocked — please allow popups or open ./spo2_plot.html directly');
+    })()">
+      <div class="metric-icon">💜</div>
+      <div class="metric-title">Blood Oxygen</div>
+      <button class="open-btn">View Dashboard</button>
+      <div class="metric-note">spo2_plot.html</div>
+    </div>
+
+    <div class="metric-card sleep-card" onclick="(function(){
+      var w=window.open('./sleep_hours_plot.html','sleep_hoursPopup','width=900,height=600,resizable=yes,scrollbars=yes'); 
+      if(w) w.focus(); 
+      else alert('⚠️ Popup blocked — please allow popups or open ./sleep_hours_plot.html directly');
+    })()">
+      <div class="metric-icon">😴</div>
+      <div class="metric-title">Sleep</div>
+      <button class="open-btn">View Dashboard</button>
+      <div class="metric-note">sleep_hours_plot.html</div>
+    </div>
+
+    <div class="metric-card water-card" onclick="(function(){
+      var w=window.open('./water_ml_plot.html','water_mlPopup','width=900,height=600,resizable=yes,scrollbars=yes'); 
+      if(w) w.focus(); 
+      else alert('⚠️ Popup blocked — please allow popups or open ./water_ml_plot.html directly');
+    })()">
+      <div class="metric-icon">💧</div>
+      <div class="metric-title">Water Intake</div>
+      <button class="open-btn">View Dashboard</button>
+      <div class="metric-note">water_ml_plot.html</div>
+    </div>
+
+  </div>
+  <div class="footer">
+    📁 Files saved in: /Users/mananshah/Desktop/nucleate-hack-medi-minds/backend/data_analysis/data-analysis/static
+  </div>
+</div>
+</body>
+</html>
