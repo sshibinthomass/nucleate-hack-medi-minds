@@ -1,42 +1,11 @@
 {
     "mcpServers": {
-        "dataflow": {
-            "command": "python",
-            "args": [
-                "/Users/qtf4195/nucleate-hack-medi-minds/backend/langgraph_agent/mcps/local_servers/dataflow.py"
-            ],
-            "transport": "stdio"
-        },
-        "filesystem": {
-            "command": "npx",
-            "args": [
-                "-y",
-                "@modelcontextprotocol/server-filesystem",
-                "${MCP_FILESYSTEM_DIR}"
-            ],
-            "transport": "stdio"
-        },
         "git": {
             "command": "uvx",
             "args": [
                 "mcp-server-git"
             ],
             "transport": "stdio"
-        },
-        "perplexity-ask": {
-        "command": "docker",
-        "args": [
-            "run",
-            "-i",
-            "--rm",
-            "-e",
-            "PERPLEXITY_API_KEY",
-            "mcp/perplexity-ask"
-        ],
-        "env": {
-            "PERPLEXITY_API_KEY": "${PERPLEXITY_API_KEY}"
-        },
-        "transport": "stdio"
         }
     }
 }

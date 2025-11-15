@@ -215,7 +215,7 @@ if __name__ == "__main__":
         node = MCPChatbotNode(llm, tools=tools)
 
         # Default example
-        user_input = "Use preplexity to give me today's news in india?"
+        user_input = "Hello how are you doing today?"
         print("\n ----  USER  ---- \n\n", user_input)
         print("\n ----  ASSISTANT  ---- \n\n")
 
@@ -229,7 +229,7 @@ if __name__ == "__main__":
 
         # Process with the node (now async)
         result = await node.process(state)
-
+        print("result",result)
         # Extract and display the response
         result_messages = result.get("messages", [])
         if result_messages:

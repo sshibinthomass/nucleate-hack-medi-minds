@@ -64,3 +64,6 @@ logs/
 *.tmp
 *.temp
 
+*.json
+*.pyc
+
