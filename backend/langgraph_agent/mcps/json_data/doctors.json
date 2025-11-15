@@ -1,0 +1,524 @@
+[
+  {
+    "id": "DOC0001",
+    "name": "Dr. Anna Müller (Gene)",
+    "specialty": "General Practice",
+    "hospital": "University Hospital Munich",
+    "address": "789 University Blvd, Munich",
+    "gmap_link": "https://maps.google.com/?q=University+Hospital+Munich",
+    "phone": "+49-89-5235712",
+    "email": ".anna.müller@universityhospitalmunich.de",
+    "languages": [
+      "French",
+      "German",
+      "Spanish"
+    ],
+    "opening_time": "08:00",
+    "closing_time": "19:00",
+    "available_days": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday"
+    ],
+    "rating": 3.6,
+    "years_experience": 28,
+    "accepts_new_patients": false
+  },
+  {
+    "id": "DOC0002",
+    "name": "Dr. Emma Klein (Orth)",
+    "specialty": "Orthopedics",
+    "hospital": "Downtown Clinic",
+    "address": "321 Center St, Munich",
+    "gmap_link": "https://maps.google.com/?q=Downtown+Clinic+Munich",
+    "phone": "+49-89-7535013",
+    "email": ".emma.klein@downtownclinic.de",
+    "languages": [
+      "Italian",
+      "English"
+    ],
+    "opening_time": "08:00",
+    "closing_time": "19:00",
+    "available_days": [
+      "Monday",
+      "Wednesday",
+      "Friday"
+    ],
+    "rating": 3.6,
+    "years_experience": 24,
+    "accepts_new_patients": true
+  },
+  {
+    "id": "DOC0003",
+    "name": "Dr. Lisa Becker (Pedi)",
+    "specialty": "Pediatrics",
+    "hospital": "University Hospital Munich",
+    "address": "789 University Blvd, Munich",
+    "gmap_link": "https://maps.google.com/?q=University+Hospital+Munich",
+    "phone": "+49-89-2556582",
+    "email": ".lisa.becker@universityhospitalmunich.de",
+    "languages": [
+      "French",
+      "English",
+      "German"
+    ],
+    "opening_time": "09:00",
+    "closing_time": "19:00",
+    "available_days": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday"
+    ],
+    "rating": 4.5,
+    "years_experience": 22,
+    "accepts_new_patients": true
+  },
+  {
+    "id": "DOC0004",
+    "name": "Dr. Michael Wagner (Neur)",
+    "specialty": "Neurology",
+    "hospital": "University Hospital Munich",
+    "address": "789 University Blvd, Munich",
+    "gmap_link": "https://maps.google.com/?q=University+Hospital+Munich",
+    "phone": "+49-89-7231254",
+    "email": ".michael.wagner@universityhospitalmunich.de",
+    "languages": [
+      "Italian",
+      "Spanish"
+    ],
+    "opening_time": "09:00",
+    "closing_time": "18:00",
+    "available_days": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday"
+    ],
+    "rating": 4.1,
+    "years_experience": 24,
+    "accepts_new_patients": true
+  },
+  {
+    "id": "DOC0005",
+    "name": "Dr. Michael Wagner (Orth)",
+    "specialty": "Orthopedics",
+    "hospital": "St. Mary's Medical Center",
+    "address": "456 Oak Ave, Munich",
+    "gmap_link": "https://maps.google.com/?q=St+Marys+Medical+Center+Munich",
+    "phone": "+49-89-7532429",
+    "email": ".michael.wagner@st.marysmedicalcenter.de",
+    "languages": [
+      "English",
+      "Spanish",
+      "German"
+    ],
+    "opening_time": "09:00",
+    "closing_time": "18:00",
+    "available_days": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday"
+    ],
+    "rating": 3.8,
+    "years_experience": 25,
+    "accepts_new_patients": true
+  },
+  {
+    "id": "DOC0006",
+    "name": "Dr. Emma Klein (Gene)",
+    "specialty": "General Practice",
+    "hospital": "Downtown Clinic",
+    "address": "321 Center St, Munich",
+    "gmap_link": "https://maps.google.com/?q=Downtown+Clinic+Munich",
+    "phone": "+49-89-8431080",
+    "email": ".emma.klein@downtownclinic.de",
+    "languages": [
+      "German",
+      "Spanish"
+    ],
+    "opening_time": "09:00",
+    "closing_time": "17:00",
+    "available_days": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday"
+    ],
+    "rating": 4.8,
+    "years_experience": 7,
+    "accepts_new_patients": true
+  },
+  {
+    "id": "DOC0007",
+    "name": "Dr. Lisa Becker (Onco)",
+    "specialty": "Oncology",
+    "hospital": "City General Hospital",
+    "address": "123 Main St, Munich",
+    "gmap_link": "https://maps.google.com/?q=City+General+Hospital+Munich",
+    "phone": "+49-89-5478630",
+    "email": ".lisa.becker@citygeneralhospital.de",
+    "languages": [
+      "French",
+      "German",
+      "English"
+    ],
+    "opening_time": "09:00",
+    "closing_time": "19:00",
+    "available_days": [
+      "Monday",
+      "Wednesday",
+      "Friday"
+    ],
+    "rating": 4.5,
+    "years_experience": 16,
+    "accepts_new_patients": true
+  },
+  {
+    "id": "DOC0008",
+    "name": "Dr. Anna Müller (Gene)",
+    "specialty": "General Practice",
+    "hospital": "City General Hospital",
+    "address": "123 Main St, Munich",
+    "gmap_link": "https://maps.google.com/?q=City+General+Hospital+Munich",
+    "phone": "+49-89-5160026",
+    "email": ".anna.müller@citygeneralhospital.de",
+    "languages": [
+      "English",
+      "Spanish"
+    ],
+    "opening_time": "09:00",
+    "closing_time": "19:00",
+    "available_days": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday"
+    ],
+    "rating": 4.9,
+    "years_experience": 15,
+    "accepts_new_patients": true
+  },
+  {
+    "id": "DOC0009",
+    "name": "Dr. Robert Wolf (Derm)",
+    "specialty": "Dermatology",
+    "hospital": "St. Mary's Medical Center",
+    "address": "456 Oak Ave, Munich",
+    "gmap_link": "https://maps.google.com/?q=St+Marys+Medical+Center+Munich",
+    "phone": "+49-89-1423216",
+    "email": ".robert.wolf@st.marysmedicalcenter.de",
+    "languages": [
+      "English",
+      "Italian"
+    ],
+    "opening_time": "09:00",
+    "closing_time": "19:00",
+    "available_days": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday"
+    ],
+    "rating": 3.6,
+    "years_experience": 6,
+    "accepts_new_patients": false
+  },
+  {
+    "id": "DOC0010",
+    "name": "Dr. Emma Klein (Gene)",
+    "specialty": "General Practice",
+    "hospital": "St. Mary's Medical Center",
+    "address": "456 Oak Ave, Munich",
+    "gmap_link": "https://maps.google.com/?q=St+Marys+Medical+Center+Munich",
+    "phone": "+49-89-4103003",
+    "email": ".emma.klein@st.marysmedicalcenter.de",
+    "languages": [
+      "German",
+      "French"
+    ],
+    "opening_time": "09:00",
+    "closing_time": "18:00",
+    "available_days": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday"
+    ],
+    "rating": 4.2,
+    "years_experience": 23,
+    "accepts_new_patients": true
+  },
+  {
+    "id": "DOC0011",
+    "name": "Dr. Michael Wagner (Derm)",
+    "specialty": "Dermatology",
+    "hospital": "City General Hospital",
+    "address": "123 Main St, Munich",
+    "gmap_link": "https://maps.google.com/?q=City+General+Hospital+Munich",
+    "phone": "+49-89-8886422",
+    "email": ".michael.wagner@citygeneralhospital.de",
+    "languages": [
+      "English",
+      "German",
+      "Italian"
+    ],
+    "opening_time": "09:00",
+    "closing_time": "18:00",
+    "available_days": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday"
+    ],
+    "rating": 4.3,
+    "years_experience": 28,
+    "accepts_new_patients": true
+  },
+  {
+    "id": "DOC0012",
+    "name": "Dr. David Fischer (Card)",
+    "specialty": "Cardiology",
+    "hospital": "City General Hospital",
+    "address": "123 Main St, Munich",
+    "gmap_link": "https://maps.google.com/?q=City+General+Hospital+Munich",
+    "phone": "+49-89-2714724",
+    "email": ".david.fischer@citygeneralhospital.de",
+    "languages": [
+      "English",
+      "Italian",
+      "Spanish"
+    ],
+    "opening_time": "09:00",
+    "closing_time": "17:00",
+    "available_days": [
+      "Monday",
+      "Wednesday",
+      "Friday"
+    ],
+    "rating": 3.7,
+    "years_experience": 26,
+    "accepts_new_patients": true
+  },
+  {
+    "id": "DOC0013",
+    "name": "Dr. David Fischer (Derm)",
+    "specialty": "Dermatology",
+    "hospital": "Downtown Clinic",
+    "address": "321 Center St, Munich",
+    "gmap_link": "https://maps.google.com/?q=Downtown+Clinic+Munich",
+    "phone": "+49-89-5757486",
+    "email": ".david.fischer@downtownclinic.de",
+    "languages": [
+      "English",
+      "French"
+    ],
+    "opening_time": "08:00",
+    "closing_time": "17:00",
+    "available_days": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday"
+    ],
+    "rating": 4.6,
+    "years_experience": 17,
+    "accepts_new_patients": true
+  },
+  {
+    "id": "DOC0014",
+    "name": "Dr. Lisa Becker (Card)",
+    "specialty": "Cardiology",
+    "hospital": "City General Hospital",
+    "address": "123 Main St, Munich",
+    "gmap_link": "https://maps.google.com/?q=City+General+Hospital+Munich",
+    "phone": "+49-89-7198194",
+    "email": ".lisa.becker@citygeneralhospital.de",
+    "languages": [
+      "English",
+      "Italian",
+      "Spanish"
+    ],
+    "opening_time": "09:00",
+    "closing_time": "19:00",
+    "available_days": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday"
+    ],
+    "rating": 4.0,
+    "years_experience": 25,
+    "accepts_new_patients": true
+  },
+  {
+    "id": "DOC0015",
+    "name": "Dr. David Fischer (Neur)",
+    "specialty": "Neurology",
+    "hospital": "St. Mary's Medical Center",
+    "address": "456 Oak Ave, Munich",
+    "gmap_link": "https://maps.google.com/?q=St+Marys+Medical+Center+Munich",
+    "phone": "+49-89-3112644",
+    "email": ".david.fischer@st.marysmedicalcenter.de",
+    "languages": [
+      "French",
+      "German"
+    ],
+    "opening_time": "09:00",
+    "closing_time": "19:00",
+    "available_days": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday"
+    ],
+    "rating": 4.7,
+    "years_experience": 29,
+    "accepts_new_patients": true
+  },
+  {
+    "id": "DOC0016",
+    "name": "Dr. Julia Hoffmann (Card)",
+    "specialty": "Cardiology",
+    "hospital": "City General Hospital",
+    "address": "123 Main St, Munich",
+    "gmap_link": "https://maps.google.com/?q=City+General+Hospital+Munich",
+    "phone": "+49-89-7571357",
+    "email": ".julia.hoffmann@citygeneralhospital.de",
+    "languages": [
+      "English",
+      "Italian"
+    ],
+    "opening_time": "08:00",
+    "closing_time": "17:00",
+    "available_days": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday"
+    ],
+    "rating": 4.2,
+    "years_experience": 17,
+    "accepts_new_patients": false
+  },
+  {
+    "id": "DOC0017",
+    "name": "Dr. David Fischer (Pedi)",
+    "specialty": "Pediatrics",
+    "hospital": "City General Hospital",
+    "address": "123 Main St, Munich",
+    "gmap_link": "https://maps.google.com/?q=City+General+Hospital+Munich",
+    "phone": "+49-89-5571467",
+    "email": ".david.fischer@citygeneralhospital.de",
+    "languages": [
+      "English",
+      "Spanish",
+      "German"
+    ],
+    "opening_time": "08:00",
+    "closing_time": "17:00",
+    "available_days": [
+      "Monday",
+      "Wednesday",
+      "Friday"
+    ],
+    "rating": 4.9,
+    "years_experience": 16,
+    "accepts_new_patients": true
+  },
+  {
+    "id": "DOC0018",
+    "name": "Dr. Emma Klein (Neur)",
+    "specialty": "Neurology",
+    "hospital": "St. Mary's Medical Center",
+    "address": "456 Oak Ave, Munich",
+    "gmap_link": "https://maps.google.com/?q=St+Marys+Medical+Center+Munich",
+    "phone": "+49-89-8789837",
+    "email": ".emma.klein@st.marysmedicalcenter.de",
+    "languages": [
+      "Italian",
+      "English",
+      "Spanish"
+    ],
+    "opening_time": "08:00",
+    "closing_time": "18:00",
+    "available_days": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday"
+    ],
+    "rating": 4.5,
+    "years_experience": 18,
+    "accepts_new_patients": true
+  },
+  {
+    "id": "DOC0019",
+    "name": "Dr. Thomas Schmidt (Card)",
+    "specialty": "Cardiology",
+    "hospital": "St. Mary's Medical Center",
+    "address": "456 Oak Ave, Munich",
+    "gmap_link": "https://maps.google.com/?q=St+Marys+Medical+Center+Munich",
+    "phone": "+49-89-6085550",
+    "email": ".thomas.schmidt@st.marysmedicalcenter.de",
+    "languages": [
+      "Italian",
+      "French"
+    ],
+    "opening_time": "09:00",
+    "closing_time": "19:00",
+    "available_days": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday"
+    ],
+    "rating": 4.9,
+    "years_experience": 30,
+    "accepts_new_patients": true
+  },
+  {
+    "id": "DOC0020",
+    "name": "Dr. Emma Klein (Derm)",
+    "specialty": "Dermatology",
+    "hospital": "City General Hospital",
+    "address": "123 Main St, Munich",
+    "gmap_link": "https://maps.google.com/?q=City+General+Hospital+Munich",
+    "phone": "+49-89-5899551",
+    "email": ".emma.klein@citygeneralhospital.de",
+    "languages": [
+      "Spanish",
+      "Italian",
+      "German"
+    ],
+    "opening_time": "09:00",
+    "closing_time": "17:00",
+    "available_days": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday"
+    ],
+    "rating": 4.6,
+    "years_experience": 25,
+    "accepts_new_patients": false
+  }
+]

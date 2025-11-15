@@ -130,10 +130,12 @@ class MCPChatbotNode:
                     print(f"< TOOL CALL: {tool_name} >")
                     if tool_id:
                         print(f"Tool ID: {tool_id}")
-                    if tool_args:
+                    if tool_args and isinstance(tool_args, dict) and len(tool_args) > 0:
+                        print(f"Arguments: {tool_args}")
+                    elif tool_args and not isinstance(tool_args, dict):
                         print(f"Arguments: {tool_args}")
                     else:
-                        print("Arguments: (none)")
+                        print("Arguments: (no arguments required)")
                     print()
 
                 # Add the AI response with tool calls to messages
@@ -222,7 +224,9 @@ if __name__ == "__main__":
         # Create state with user message
         state = {
             "messages": [
-                SystemMessage(content="You are Medi-Mind, a personal medical assistant. You help users manage their medical details, track health information, answer medical questions, and provide health-related guidance. Always be empathetic, professional, and prioritize user safety. Remind users that you are not a substitute for professional medical advice."),
+                SystemMessage(
+                    content="You are Medi-Mind, a personal medical assistant. You help users manage their medical details, track health information, answer medical questions, and provide health-related guidance. Always be empathetic, professional, and prioritize user safety. Remind users that you are not a substitute for professional medical advice."
+                ),
                 HumanMessage(content=user_input),
             ]
         }
