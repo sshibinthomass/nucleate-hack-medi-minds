@@ -259,5 +259,200 @@ async def health_get_mood() -> str:
     return json.dumps(result, indent=2, ensure_ascii=False)
 
 
+@mcp.tool()
+async def health_get_field(field_name: str) -> str:
+    """Get a specific field value from personal health data.
+
+    This tool retrieves any specific field from the personal_data.json file.
+    Use this when you need to get a particular health metric, weather data, or any other
+    specific information about the user.
+
+    Available fields include:
+
+    **Activity & Fitness:**
+    - "steps" - Number of steps taken (integer)
+    - "calories_kcal" - Calories burned in kcal (integer)
+    - "workout_time_min" - Workout duration in minutes (integer)
+    - "exercise_session" - Number of exercise sessions (integer)
+    - "today_activities" - Array of today's activities, each containing:
+      * "activity" - Activity type (e.g., "Walking", "Running", "Cycling")
+      * "duration_min" - Duration in minutes (integer)
+      * "distance_km" or "distance" - Distance in kilometers (float)
+      * "calories" - Calories burned for this activity (integer)
+
+    **Vital Signs:**
+    - "heart_rate_bpm" - Current heart rate in beats per minute (float)
+    - "today_heart_rate" - Today's heart rate in bpm (float)
+    - "yesterdays_heart_rate" - Yesterday's heart rate in bpm (float)
+    - "predicted_tomorrows_heart_rate" - Predicted tomorrow's heart rate in bpm (float)
+    - "lowest_heart_rate" - Lowest recorded heart rate in bpm (float)
+    - "highest_heart_rate" - Highest recorded heart rate in bpm (float)
+    - "lowerst_heart_rate_date" - Date of lowest heart rate (string, format: YYYY-MM-DD)
+    - "highest_heart_rate_date" - Date of highest heart rate (string, format: YYYY-MM-DD)
+    - "blood_oxygen_spo2_percent" - Blood oxygen saturation percentage (float)
+
+    **Sleep:**
+    - "sleep_duration_hours" - Sleep duration in hours (float)
+    - "sleep_score" - Sleep quality score (integer, 0-100)
+
+    **Nutrition & Hydration:**
+    - "Water_Intake_cups" - Water intake in cups (integer)
+    - "next_meal_in_minutes" - Minutes until next meal (integer)
+
+    **Wellness & Mood:**
+    - "mood" - Current mood (string: "Happy", "Sad", "Surprised", "Angry")
+    - "Energy_Level" - Energy level score (integer, 0-100)
+    - "stress_score" - Stress level score (integer, 0-100)
+
+    **Body Metrics:**
+    - "skin_temperature_c" - Skin temperature in Celsius (float)
+    - "gender" - Gender (string: "male" or "female")
+    - "menstrual_cycle_day" - Menstrual cycle day (integer or null)
+
+    **Weather Data:**
+    - "temperature_c" - Current temperature in Celsius (float)
+    - "humidity_percent" - Humidity percentage (integer)
+    - "wind_kmh" - Wind speed in km/h (integer)
+
+    **Device & Lifestyle:**
+    - "screen_time_minutes" - Screen time in minutes (integer)
+    - "alarm_time" - Alarm time (string, format: HH:MM)
+    - "reminders_count" - Number of reminders (integer)
+
+    Args:
+        field_name: The name of the field to retrieve. Must match exactly one of the available fields listed above (case-sensitive).
+
+    Returns:
+        A JSON string containing:
+        - "status": "success" or "error"
+        - "field_name": The requested field name
+        - "value": The field value (or null if field doesn't exist)
+        - "data_type": The type of the value (e.g., "integer", "float", "string", "null")
+        - "message": Status message
+
+    Examples:
+        - To get current heart rate: field_name="heart_rate_bpm"
+        - To get weather temperature: field_name="temperature_c"
+        - To get steps: field_name="steps"
+        - To get mood: field_name="mood"
+        - To get today's activities: field_name="today_activities"
+    """
+    data = health_manager.get_health_data()
+
+    if field_name not in data:
+        result = {
+            "status": "error",
+            "field_name": field_name,
+            "value": None,
+            "data_type": None,
+            "message": f"Field '{field_name}' not found in personal data. Use health_get_all_data() to see all available fields.",
+            "available_fields": list(data.keys()) if data else [],
+        }
+    else:
+        value = data[field_name]
+        # Determine data type
+        if value is None:
+            data_type = "null"
+        elif isinstance(value, bool):
+            data_type = "boolean"
+        elif isinstance(value, int):
+            data_type = "integer"
+        elif isinstance(value, float):
+            data_type = "float"
+        elif isinstance(value, str):
+            data_type = "string"
+        elif isinstance(value, list):
+            data_type = "array"
+        elif isinstance(value, dict):
+            data_type = "object"
+        else:
+            data_type = str(type(value).__name__)
+
+        result = {
+            "status": "success",
+            "field_name": field_name,
+            "value": value,
+            "data_type": data_type,
+            "message": f"Successfully retrieved field '{field_name}'",
+        }
+
+    return json.dumps(result, indent=2, ensure_ascii=False)
+
+
+@mcp.tool()
+async def health_get_today_activities() -> str:
+    """Get today's activities including walking, running, and cycling.
+
+    This tool retrieves the complete list of activities performed today, including:
+    - Activity type (Walking, Running, Cycling, etc.)
+    - Duration in minutes
+    - Distance in kilometers
+    - Calories burned per activity
+
+    Returns:
+        A JSON string containing:
+        - "status": "success" or "error"
+        - "activities": Array of activity objects, each with:
+          * "activity" - Activity type (string)
+          * "duration_min" - Duration in minutes (integer)
+          * "distance_km" or "distance" - Distance in kilometers (float)
+          * "calories" - Calories burned (integer)
+        - "total_activities" - Total number of activities
+        - "total_duration_min" - Total duration of all activities in minutes
+        - "total_calories" - Total calories burned across all activities
+        - "message": Status message
+
+    Example response:
+        {
+          "status": "success",
+          "activities": [
+            {
+              "activity": "Walking",
+              "duration_min": 30,
+              "distance_km": 2.5,
+              "calories": 100
+            },
+            {
+              "activity": "Running",
+              "duration_min": 15,
+              "distance": 1.5,
+              "calories": 75
+            }
+          ],
+          "total_activities": 2,
+          "total_duration_min": 45,
+          "total_calories": 175,
+          "message": "Successfully retrieved today's activities"
+        }
+    """
+    data = health_manager.get_health_data()
+    activities = data.get("today_activities", [])
+
+    if not activities:
+        result = {
+            "status": "success",
+            "activities": [],
+            "total_activities": 0,
+            "total_duration_min": 0,
+            "total_calories": 0,
+            "message": "No activities recorded for today",
+        }
+    else:
+        # Calculate totals
+        total_duration = sum(activity.get("duration_min", 0) for activity in activities)
+        total_calories = sum(activity.get("calories", 0) for activity in activities)
+
+        result = {
+            "status": "success",
+            "activities": activities,
+            "total_activities": len(activities),
+            "total_duration_min": total_duration,
+            "total_calories": total_calories,
+            "message": f"Successfully retrieved {len(activities)} activity/activities for today",
+        }
+
+    return json.dumps(result, indent=2, ensure_ascii=False)
+
+
 if __name__ == "__main__":
     mcp.run(transport="stdio")

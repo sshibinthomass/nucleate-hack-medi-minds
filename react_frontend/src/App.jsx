@@ -249,7 +249,7 @@ export default function App() {
 
   return (
     <div className={`app ${sidebarOpen ? "app--sidebar-open" : "app--sidebar-closed"}`}>
-      <Topbar backendUrl={BACKEND_URL} />
+      <Topbar backendUrl={BACKEND_URL} useCase={useCase} />
       
       <div className="app__main-content">
         {sidebarOpen && (

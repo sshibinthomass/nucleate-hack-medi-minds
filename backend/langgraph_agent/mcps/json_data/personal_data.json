@@ -1,11 +1,11 @@
 {
-      "steps": 7842,
-      "calories_kcal": 612,
-      "blood_oxygen_spo2_percent": 97,
-      "heart_rate_bpm": 74,
-      "Water_Intake_cups": 4,
-      "Energy_Level": 44,
-      "mood": "Sad",
+      "steps": 5020,
+      "calories_kcal": 2073,
+      "blood_oxygen_spo2_percent": 98.2,
+      "heart_rate_bpm": 63.8,
+      "Water_Intake_cups": 5,
+      "Energy_Level": 79,
+      "mood": "Happy",
       "sleep_duration_hours": 7.5,
       "workout_time_min": 42,
       "exercise_session": 1,
@@ -17,8 +17,35 @@
       "screen_time_minutes": 192,
       "alarm_time": "06:45",
       "reminders_count": 3,
-      "temperature_c": 5,
-      "humidity_percent": 60,
-      "wind_kmh": 9,
-      "gender": "male"
+      "temperature_c": 16,
+      "humidity_percent": 59,
+      "wind_kmh": 5,
+      "gender": "male",
+      "lowerst_heart_rate_date": "2025-02-14",
+      "lowest_heart_rate": 51,
+      "highest_heart_rate_date": "2025-10-01",
+      "highest_heart_rate": 87.3,
+      "yesterdays_heart_rate": 68.4,
+      "today_heart_rate": 63.8,
+      "predicted_tomorrows_heart_rate": 61.9,
+      "today_activities": [
+            {
+                  "activity": "Walking",
+                  "duration_min": 30,
+                  "distance_km": 2.5,
+                  "calories": 100
+            },
+            {
+                  "activity": "Running",
+                  "duration_min": 15,
+                  "distance": 1.5,
+                  "calories": 75
+            },
+            {
+                  "activity": "Cycling",
+                  "duration_min": 20,
+                  "distance_km": 1.0,
+                  "calories": 50
+            }
+      ]
 }

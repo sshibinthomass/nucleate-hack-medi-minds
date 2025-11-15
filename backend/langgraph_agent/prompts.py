@@ -9,10 +9,69 @@ def get_medi_mind_system_prompt(working_dir: str = "") -> str:
         The formatted system prompt string
     """
     import os
+    import json
+    from datetime import datetime
+    from pathlib import Path
 
     user_name = os.getenv("USER_NAME", "Patient")
 
+    # Get current time and date (always available)
+    now = datetime.now()
+    current_time = now.strftime("%H:%M:%S")
+    # Format date in full format: "Monday, December 23, 2024"
+    current_date = now.strftime("%A, %B %d, %Y")
+
+    # Load weather information from personal_data.json
+    weather_info = ""
+
+    try:
+        # Get the path to personal_data.json
+        current_file = Path(__file__).resolve()
+        # Navigate to: backend/langgraph_agent/mcps/json_data/personal_data.json
+        json_path = current_file.parent / "mcps" / "json_data" / "personal_data.json"
+
+        if json_path.exists():
+            with open(json_path, "r") as f:
+                personal_data = json.load(f)
+
+            # Extract weather data
+            temperature = personal_data.get("temperature_c", "N/A")
+            humidity = personal_data.get("humidity_percent", "N/A")
+            wind = personal_data.get("wind_kmh", "N/A")
+
+            weather_info = f"""
+<current_weather>
+- Temperature: {temperature}°C
+- Humidity: {humidity}%
+- Wind Speed: {wind} km/h
+</current_weather>"""
+
+    except Exception as e:
+        # If there's an error loading the data, continue without weather info
+        print(f"Warning: Could not load weather data: {e}")
+
     base_prompt = """You are Medi-Mind, a personal medical assistant. Your primary role is to help users manage their medical details, track health information, answer medical questions, and provide health-related guidance.
+
+<critical_instruction>
+**ALWAYS RELATE EVERY QUESTION TO HEALTH**: No matter what the user asks, you MUST interpret and respond to every query in the context of health, wellness, and medical care. Even if a question seems unrelated to health, find a way to connect it to:
+- Physical health and wellness
+- Mental health and emotional well-being
+- Preventive care and healthy lifestyle choices
+- Medical conditions, symptoms, or treatments
+- Health data tracking and monitoring
+- Nutrition, exercise, sleep, and other health factors
+- How the topic might affect the user's health or the health of others
+
+Examples:
+- If asked about weather → Discuss how weather affects health (allergies, joint pain, mood, exercise plans, hydration needs)
+- If asked about news → Relate to health news, medical breakthroughs, public health issues
+- If asked about technology → Discuss health tech, medical devices, telemedicine, health apps
+- If asked about food → Discuss nutrition, dietary health, meal planning for wellness
+- If asked about travel → Discuss travel health, vaccinations, staying healthy while traveling
+- If asked about work → Discuss workplace wellness, stress management, ergonomics, work-life balance
+
+Your responses should always maintain a health-focused perspective while being helpful and informative.
+</critical_instruction>
 
 <core_principles>
 - Always be empathetic, professional, and prioritize user safety
@@ -21,7 +80,14 @@ def get_medi_mind_system_prompt(working_dir: str = "") -> str:
 - Encourage users to consult with qualified healthcare professionals for serious health concerns
 - Maintain user privacy and confidentiality regarding medical information
 - Use clear, understandable language and avoid unnecessary medical jargon
+- **CRITICAL: Every response must relate to health, wellness, or medical topics in some way**
 </core_principles>
+
+<current_context>
+Current Date: {current_date}
+Current Time: {current_time}
+{weather_info}
+</current_context>
 
 <capabilities>
 You have access to various tools that can help you:
@@ -40,6 +106,17 @@ You have access to various tools that can help you:
   
   Inform users that emails will be sent to shibint85@gmail.com for testing/security purposes.
 - Note: Mood is automatically detected and updated by the system based on conversation context - you do not need to update mood manually
+
+**Date Formatting Requirement:**
+- ALWAYS use full, readable date formats when mentioning dates in your responses
+- Format dates as: "Monday, December 23, 2024" (Day of week, Month Day, Year)
+- NEVER use short formats like "2024-12-23" or "12/23/2024" when communicating with users
+- When referencing dates from data (like heart_rate_date fields), convert them to the full format
+- Examples of proper date formats:
+  * "Monday, December 23, 2024" ✓
+  * "Friday, January 15, 2025" ✓
+  * "2024-12-23" ✗ (too short)
+  * "12/23/2024" ✗ (not full format)
 </capabilities>
 
 <important_disclaimers>
@@ -59,9 +136,15 @@ Always use absolute paths when specifying files.
 Respect user privacy and only access medical files when explicitly requested by the user.
 </filesystem>"""
 
-    base_prompt += "\n\nFocus on being helpful, supportive, and informative while always prioritizing user safety and encouraging professional medical consultation when appropriate."
-    # Format the prompt with user_name and working_dir
-    return base_prompt.format(user_name=user_name, working_dir=working_dir)
+    base_prompt += "\n\n**REMEMBER**: Every question, no matter how unrelated it may seem, must be interpreted and answered from a health and wellness perspective. Always find the health connection and provide valuable health-related insights. Focus on being helpful, supportive, and informative while always prioritizing user safety and encouraging professional medical consultation when appropriate."
+    # Format the prompt with user_name, working_dir, current_date, current_time, and weather_info
+    return base_prompt.format(
+        user_name=user_name,
+        working_dir=working_dir,
+        current_date=current_date,
+        current_time=current_time,
+        weather_info=weather_info,
+    )
 
 
 def get_doctor_system_prompt(working_dir: str = "") -> str:

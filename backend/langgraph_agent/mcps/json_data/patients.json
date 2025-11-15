@@ -25,7 +25,7 @@
   {
     "id": "PAT00002",
     "name": "Hans Gruber",
-    "date_of_birth": "1953-02-18",
+    "date_of_birth": "1995-02-18",
     "gender": "Other",
     "phone": "+49-505-4258243",
     "email": "sshibinthomas@gmail.com",
@@ -33,7 +33,9 @@
     "emergency_contact": "Hans Gruber",
     "emergency_phone": "+49-871-9145369",
     "blood_type": "AB-",
-    "allergies": [],
+    "allergies": [
+      "Lactose"
+    ],
     "chronic_conditions": [
       "Diabetes",
       "None"
@@ -45,7 +47,7 @@
   {
     "id": "PAT00003",
     "name": "Klaus Meyer",
-    "date_of_birth": "1977-10-14",
+    "date_of_birth": "1999-10-14",
     "gender": "Other",
     "phone": "+49-416-6266622",
     "email": "sshibinthomas@gmail.com",
@@ -87,7 +89,7 @@
   {
     "id": "PAT00005",
     "name": "Alan Ken",
-    "date_of_birth": "1970-11-10",
+    "date_of_birth": "1990-11-10",
     "gender": "Male",
     "phone": "+49-425-4392736",
     "email": "sshibinthomas@gmail.com",
@@ -189,7 +191,9 @@
     "emergency_contact": "Maria Fischer",
     "emergency_phone": "+49-893-8725575",
     "blood_type": "B+",
-    "allergies": [],
+    "allergies": [
+      "Lactose"
+    ],
     "chronic_conditions": [
       "Diabetes",
       "None"

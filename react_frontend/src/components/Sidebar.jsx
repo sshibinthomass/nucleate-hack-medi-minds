@@ -236,20 +236,47 @@ export function Sidebar({
   return (
     <aside className="sidebar">
       <div className="sidebar__form">
-        <label className="sidebar__label">
-          Use Case
-          <select
-            value={useCase}
-            onChange={(event) => onUseCaseChange(event.target.value)}
-            className="sidebar__select"
-          >
-            {useCases.map((option) => (
-              <option key={option.value} value={option.value}>
-                {option.label}
-              </option>
-            ))}
-          </select>
-        </label>
+        <div style={{
+          display: 'flex',
+          flexDirection: 'column',
+          gap: '8px'
+        }}>
+          {useCases.map((option) => (
+            <button
+              key={option.value}
+              onClick={() => onUseCaseChange(option.value)}
+              style={{
+                padding: '12px 16px',
+                borderRadius: '8px',
+                border: `2px solid ${useCase === option.value ? '#4CAF50' : '#e0e0e0'}`,
+                backgroundColor: useCase === option.value ? '#f1f8f4' : '#ffffff',
+                color: useCase === option.value ? '#2e7d32' : '#666666',
+                fontWeight: useCase === option.value ? '600' : '400',
+                fontSize: '14px',
+                cursor: 'pointer',
+                transition: 'all 0.2s ease',
+                textAlign: 'left',
+                width: '100%',
+                outline: 'none',
+                boxShadow: useCase === option.value ? '0 2px 4px rgba(76, 175, 80, 0.1)' : 'none',
+              }}
+              onMouseEnter={(e) => {
+                if (useCase !== option.value) {
+                  e.currentTarget.style.backgroundColor = '#f5f5f5';
+                  e.currentTarget.style.borderColor = '#bdbdbd';
+                }
+              }}
+              onMouseLeave={(e) => {
+                if (useCase !== option.value) {
+                  e.currentTarget.style.backgroundColor = '#ffffff';
+                  e.currentTarget.style.borderColor = '#e0e0e0';
+                }
+              }}
+            >
+              {option.label}
+            </button>
+          ))}
+        </div>
       </div>
 
       {useCase === "doctor_chatbot" ? (
@@ -452,6 +479,54 @@ export function Sidebar({
                 </div>
               </div>
             </div>
+          </div>
+
+          {/* Activity Icons - Only visible for Medical Assistant use case */}
+          <div className="activity-icons" style={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            gap: '16px',
+            marginTop: '12px',
+            padding: '8px 0',
+            opacity: 0.5
+          }}>
+            <span style={{
+              fontSize: '18px',
+              color: '#666',
+              display: 'inline-flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              width: '32px',
+              height: '32px',
+              borderRadius: '50%',
+              border: '1px solid #ccc',
+              backgroundColor: 'rgba(200, 200, 200, 0.1)'
+            }}>🚶</span>
+            <span style={{
+              fontSize: '18px',
+              color: '#666',
+              display: 'inline-flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              width: '32px',
+              height: '32px',
+              borderRadius: '50%',
+              border: '1px solid #ccc',
+              backgroundColor: 'rgba(200, 200, 200, 0.1)'
+            }}>🏃</span>
+            <span style={{
+              fontSize: '18px',
+              color: '#666',
+              display: 'inline-flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              width: '32px',
+              height: '32px',
+              borderRadius: '50%',
+              border: '1px solid #ccc',
+              backgroundColor: 'rgba(200, 200, 200, 0.1)'
+            }}>🚴</span>
           </div>
         </div>
       )}

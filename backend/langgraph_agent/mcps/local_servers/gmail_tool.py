@@ -3,7 +3,7 @@ import base64
 from pathlib import Path
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
-from typing import Optional
+from email.mime.image import MIMEImage
 from mcp.server.fastmcp import FastMCP
 from dotenv import load_dotenv
 
@@ -129,10 +129,17 @@ class GmailService:
             }
 
         try:
-            # Create message
-            message = MIMEMultipart("alternative")
+            # Get backend directory path
+            current_file = Path(__file__).resolve()
+            backend_dir = current_file.parent.parent.parent.parent
+
+            # Create message with "mixed" type to support attachments
+            message = MIMEMultipart("mixed")
             message["to"] = to
             message["subject"] = subject
+
+            # Create alternative part for text content
+            text_part = MIMEMultipart("alternative")
 
             # Add body
             if body_type == "html":
@@ -140,7 +147,25 @@ class GmailService:
             else:
                 part = MIMEText(body, "plain")
 
-            message.attach(part)
+            text_part.attach(part)
+            message.attach(text_part)
+
+            # Add image attachment (newplot.png)
+            image_path = backend_dir / "newplot.png"
+            if image_path.exists():
+                try:
+                    with open(image_path, "rb") as img_file:
+                        img_data = img_file.read()
+                    image_attachment = MIMEImage(img_data)
+                    image_attachment.add_header(
+                        "Content-Disposition", "attachment", filename="newplot.png"
+                    )
+                    message.attach(image_attachment)
+                except Exception as e:
+                    # If image attachment fails, continue without it
+                    print(f"Warning: Could not attach image: {e}")
+            else:
+                print(f"Warning: Image file not found at {image_path}")
 
             # Encode message
             raw_message = base64.urlsafe_b64encode(message.as_bytes()).decode("utf-8")

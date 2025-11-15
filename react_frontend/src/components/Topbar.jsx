@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-export function Topbar({ backendUrl }) {
+export function Topbar({ backendUrl, useCase }) {
   const [currentTime, setCurrentTime] = useState(new Date());
   const [weatherData, setWeatherData] = useState({
     temperature_c: 0,
@@ -61,7 +61,11 @@ export function Topbar({ backendUrl }) {
     <header className="topbar">
       <div className="topbar__content">
         <h1 className="topbar__title">Medi-Mind</h1>
-        <p className="topbar__subtitle">Your Personal Medical Assistant</p>
+        <p className="topbar__subtitle">
+          {useCase === "doctor_chatbot" 
+            ? "Doctor Assistant for Healthcare Professionals" 
+            : "Your Personal Medical Assistant"}
+        </p>
       </div>
       <div className="topbar__right">
         <div className="topbar__weather">
