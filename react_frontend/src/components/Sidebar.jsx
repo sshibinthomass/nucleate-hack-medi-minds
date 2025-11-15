@@ -273,9 +273,9 @@ export function Sidebar({
                 }
               }}
             >
-              {option.label}
+                {option.label}
             </button>
-          ))}
+            ))}
         </div>
       </div>
 
