@@ -212,7 +212,11 @@ async def chat_simple(request: SimpleChatRequest):
             session_store[session_key] = []
 
         # Build messages from stored history and current input
-        messages = [SystemMessage(content="You are Medi-Mind, a personal medical assistant. You help users manage their medical details, track health information, answer medical questions, and provide health-related guidance. Always be empathetic, professional, and prioritize user safety. Remind users that you are not a substitute for professional medical advice.")]
+        messages = [
+            SystemMessage(
+                content="You are Medi-Mind, a personal medical assistant. You help users manage their medical details, track health information, answer medical questions, and provide health-related guidance. Always be empathetic, professional, and prioritize user safety. Remind users that you are not a substitute for professional medical advice."
+            )
+        ]
         messages.extend(session_store[session_key])
         user_msg = HumanMessage(content=request.message)
         messages.append(user_msg)
