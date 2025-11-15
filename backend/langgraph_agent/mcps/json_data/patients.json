@@ -5,14 +5,13 @@
     "date_of_birth": "1984-08-26",
     "gender": "Other",
     "phone": "+49-298-7148182",
-    "email": "anna.braun@email.de",
+    "email": "sshibinthomas@gmail.com",
     "address": "352 Main St, Munich",
     "emergency_contact": "Laura Koch",
     "emergency_phone": "+49-989-5304626",
     "blood_type": "AB-",
     "allergies": [
-      "Lactose",
-      "Pollen"
+      "Lactose"
     ],
     "chronic_conditions": [
       "None"
@@ -29,7 +28,7 @@
     "date_of_birth": "1953-02-18",
     "gender": "Other",
     "phone": "+49-505-4258243",
-    "email": "hans.gruber@email.de",
+    "email": "sshibinthomas@gmail.com",
     "address": "501 Oak St, Munich",
     "emergency_contact": "Hans Gruber",
     "emergency_phone": "+49-871-9145369",
@@ -49,7 +48,7 @@
     "date_of_birth": "1977-10-14",
     "gender": "Other",
     "phone": "+49-416-6266622",
-    "email": "klaus.meyer@email.de",
+    "email": "sshibinthomas@gmail.com",
     "address": "106 Main St, Munich",
     "emergency_contact": "Laura Koch",
     "emergency_phone": "+49-191-2395104",
@@ -70,7 +69,7 @@
     "date_of_birth": "1974-09-20",
     "gender": "Male",
     "phone": "+49-435-9724802",
-    "email": "sophie.wagner@email.de",
+    "email": "sshibinthomas@gmail.com",
     "address": "881 Pine St, Munich",
     "emergency_contact": "Sophie Wagner",
     "emergency_phone": "+49-118-7874027",
@@ -87,17 +86,18 @@
   },
   {
     "id": "PAT00005",
-    "name": "Klaus Meyer",
+    "name": "Alan Ken",
     "date_of_birth": "1970-11-10",
     "gender": "Male",
     "phone": "+49-425-4392736",
-    "email": "klaus.meyer@email.de",
+    "email": "sshibinthomas@gmail.com",
     "address": "515 Main St, Munich",
     "emergency_contact": "Laura Koch",
     "emergency_phone": "+49-696-2813424",
     "blood_type": "A-",
     "allergies": [
-      "Lactose"
+      "Lactose",
+      "Nuts"
     ],
     "chronic_conditions": [
       "None",
@@ -112,11 +112,11 @@
   },
   {
     "id": "PAT00006",
-    "name": "Hans Gruber",
+    "name": "Johannes Miller",
     "date_of_birth": "2006-09-03",
     "gender": "Male",
     "phone": "+49-768-6231977",
-    "email": "hans.gruber@email.de",
+    "email": "sshibinthomas@gmail.com",
     "address": "147 Main St, Munich",
     "emergency_contact": "Sophie Wagner",
     "emergency_phone": "+49-914-3686819",
@@ -134,11 +134,11 @@
   },
   {
     "id": "PAT00007",
-    "name": "Maria Fischer",
+    "name": "Anita Fuchs",
     "date_of_birth": "1959-06-14",
     "gender": "Other",
     "phone": "+49-225-1820042",
-    "email": "maria.fischer@email.de",
+    "email": "sshibinthomas@gmail.com",
     "address": "219 Maple St, Munich",
     "emergency_contact": "Felix Bauer",
     "emergency_phone": "+49-692-7669521",
@@ -158,18 +158,16 @@
   },
   {
     "id": "PAT00008",
-    "name": "Felix Bauer",
+    "name": "Laura Koch",
     "date_of_birth": "1954-04-17",
     "gender": "Female",
     "phone": "+49-986-3373784",
-    "email": "felix.bauer@email.de",
+    "email": "sshibinthomas@gmail.com",
     "address": "533 Main St, Munich",
     "emergency_contact": "Anna Braun",
     "emergency_phone": "+49-529-2881405",
     "blood_type": "O-",
-    "allergies": [
-      "Lactose"
-    ],
+    "allergies": [],
     "chronic_conditions": [
       "Asthma",
       "Hypertension"
@@ -182,11 +180,11 @@
   },
   {
     "id": "PAT00009",
-    "name": "Maria Fischer",
+    "name": "Rafael Alvarez",
     "date_of_birth": "1975-07-03",
     "gender": "Other",
     "phone": "+49-211-8212016",
-    "email": "maria.fischer@email.de",
+    "email": "sshibinthomas@gmail.com",
     "address": "243 Pine St, Munich",
     "emergency_contact": "Maria Fischer",
     "emergency_phone": "+49-893-8725575",
@@ -205,18 +203,17 @@
   },
   {
     "id": "PAT00010",
-    "name": "Klaus Meyer",
+    "name": "Javier Gomez",
     "date_of_birth": "1971-06-28",
     "gender": "Male",
     "phone": "+49-611-7708145",
-    "email": "klaus.meyer@email.de",
+    "email": "sshibinthomas@gmail.com",
     "address": "965 Main St, Munich",
     "emergency_contact": "Sophie Wagner",
     "emergency_phone": "+49-266-7907623",
     "blood_type": "B-",
     "allergies": [
-      "Nuts",
-      "Lactose"
+      "Nuts"
     ],
     "chronic_conditions": [
       "Asthma",

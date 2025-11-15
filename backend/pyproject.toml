@@ -19,6 +19,11 @@ dependencies = [
     "nest-asyncio>=1.6.0",
     "pandas>=2.3.3",
     "duckdb>=1.2.2",
+    "aiohttp>=3.9.0",
+    "google-auth>=2.23.0",
+    "google-auth-oauthlib>=1.1.0",
+    "google-auth-httplib2>=0.1.1",
+    "google-api-python-client>=2.100.0",
 ]
 
 [dependency-groups]

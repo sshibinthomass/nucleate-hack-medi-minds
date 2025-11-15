@@ -6,9 +6,6 @@ from typing import List, Optional
 from langchain.tools import BaseTool
 from langchain_core.messages import SystemMessage
 from langchain_mcp_adapters.client import MultiServerMCPClient
-from langchain_community.tools.tavily_search import TavilySearchResults
-from langchain_core.tools import StructuredTool
-from langgraph.prebuilt import ToolNode
 from langchain_core.messages import AIMessage
 
 # Add project root to path
@@ -18,32 +15,35 @@ if str(project_root) not in sys.path:
     sys.path.insert(0, str(project_root))
 
 from langgraph_agent.states.chatbotState import ChatbotState
-from langgraph_agent.prompts import get_medi_mind_system_prompt
+from langgraph_agent.prompts import get_doctor_system_prompt
 from langgraph_agent.mcps.config import mcp_config
 
 load_dotenv()
 
 
-class MCPChatbotNode:
+class DoctorChatbotNode:
     """
-    MCP Chatbot node implementation with tool support.
-    Supports MCP tools and other LangChain tools similar to graph.py and client.py.
+    Doctor Chatbot node implementation with tool support.
+    This node is specifically designed for doctor use cases and only loads
+    patient specialist tools and Gmail tools.
     Handles tool calls by executing them and returning results.
     """
 
     def __init__(self, model, tools: Optional[List[BaseTool]] = None):
         """
-        Initialize the chatbot node with an LLM and optional tools.
+        Initialize the doctor chatbot node with an LLM and optional tools.
 
         Args:
             model: The language model to use
-            tools: Optional list of tools to bind to the LLM (from MCP servers, Tavily, etc.)
+            tools: Optional list of tools to bind to the LLM (patient tools and Gmail only)
         """
         self.llm = model
         self.tools = tools or []
+        from langgraph.prebuilt import ToolNode
+
         self.tool_node = ToolNode(self.tools) if self.tools else None
 
-        # Bind tools to LLM if provided (similar to graph.py)
+        # Bind tools to LLM if provided
         if self.tools:
             self.llm = self.llm.bind_tools(self.tools)
 
@@ -51,18 +51,18 @@ class MCPChatbotNode:
         """
         Processes the input state and generates a chatbot response.
         Returns the AI response as an AIMessage object to maintain conversation history.
-        If tools are available, includes system prompt similar to graph.py.
+        If tools are available, includes system prompt.
         Handles tool calls by executing them and getting the final response.
         Supports multiple rounds of tool calls if needed.
         """
         # Create a copy of messages to avoid modifying the input state
-        print("Inside MCP Chatbot Node")
+        print("Inside Doctor Chatbot Node")
         messages = list(state["messages"])
 
         # Add system prompt if tools are available and not already present
         if self.tools:
-            # Use the Medi-Mind system prompt when tools are available
-            system_prompt = get_medi_mind_system_prompt(
+            # Use the Doctor Assistant system prompt when tools are available
+            system_prompt = get_doctor_system_prompt(
                 working_dir=os.environ.get("MCP_FILESYSTEM_DIR", ""),
             )
             # Prepend system message if not already present
@@ -92,12 +92,11 @@ class MCPChatbotNode:
 
             # Check if response has tool calls
             if hasattr(response, "tool_calls") and response.tool_calls:
-                # Display tool call information (similar to client.py)
+                # Display tool call information
                 print("\n\n< TOOL CALLS DETECTED >\n")
 
                 for tool_call in response.tool_calls:
                     # Handle both dict and object-style tool calls
-                    # LangChain ToolCall objects have: id, name, args attributes
                     if isinstance(tool_call, dict):
                         tool_name = tool_call.get("name", "unknown")
                         tool_args = tool_call.get("args", {})
@@ -141,9 +140,8 @@ class MCPChatbotNode:
 
                 # Add the AI response with tool calls to messages
                 messages.append(response)
-                print("Messages after mood detection response:", messages)
-                # Execute tools using ToolNode (similar to graph.py)
-                # Use ainvoke for async tools (MCP tools require async)
+                print("Messages after tool call response:", messages)
+                # Execute tools using ToolNode
                 if self.tool_node:
                     tool_state = {"messages": messages}
                     tool_result = await self.tool_node.ainvoke(tool_state)
@@ -160,138 +158,29 @@ class MCPChatbotNode:
         return {"messages": [response]}
 
 
-async def load_mcp_tools():
+async def load_doctor_chatbot_tools():
     """
-    Load MCP tools. This function sets up MCP client,
-    gets tools from MCP servers, and adds Tavily and custom tools.
-    Excludes patient_specialist tools (those are only for doctor_chatbot).
+    Load MCP tools for doctor chatbot. This function sets up MCP client,
+    gets tools from patient_specialist and gmail MCP servers only.
     Returns the list of tools.
     """
-    # Create a filtered config excluding patient_specialist server
+    # Create a filtered config with only patient_specialist and gmail servers
     filtered_config = {
         "mcpServers": {
-            k: v
-            for k, v in mcp_config["mcpServers"].items()
-            if k != "patient_specialist"
+            "patient_specialist": mcp_config["mcpServers"].get("patient_specialist"),
+            "gmail": mcp_config["mcpServers"].get("gmail"),
         }
     }
 
-    # Set up MCP client and get tools (excluding patient_specialist)
+    # Remove None values (servers that don't exist)
+    filtered_config["mcpServers"] = {
+        k: v for k, v in filtered_config["mcpServers"].items() if v is not None
+    }
+
+    # Set up MCP client and get tools
     client = MultiServerMCPClient(connections=filtered_config["mcpServers"])
     # the get_tools() method returns a list of tools from all the connected servers
     tools = await client.get_tools()
-
-    # Also filter out any patient-related tools by name (as a safety measure)
-    patient_tool_prefixes = [
-        "patient_",
-        "patient_search_",
-        "patient_get_",
-        "patient_advanced_",
-    ]
-    filtered_tools = []
-    for tool in tools:
-        tool_name = None
-        if hasattr(tool, "name"):
-            tool_name = tool.name
-        elif isinstance(tool, dict):
-            tool_name = tool.get("name")
-
-        # Exclude patient tools
-        if tool_name and any(
-            tool_name.startswith(prefix) for prefix in patient_tool_prefixes
-        ):
-            print(f"[MCP Tools] Excluding patient tool: {tool_name}")
-            continue
-
-        filtered_tools.append(tool)
-
-    tools = filtered_tools
-
-    # Add Tavily search tool if API key is available
-    tavily_api_key = os.getenv("TAVILY_API_KEY")
-    if tavily_api_key:
-        # Create a health-focused wrapper for Tavily search
-        base_tavily = TavilySearchResults(max_results=5, tavily_api_key=tavily_api_key)
-
-        # Create a custom health-focused search tool
-        class HealthTavilySearchTool(BaseTool):
-            name: str = "tavily_search_results_json"
-            description: str = """A search engine for finding health, medical, and wellness information. 
-            Use this tool to search for information about:
-            - Medical conditions, symptoms, and treatments
-            - Health and wellness advice
-            - Medications and drug information
-            - Medical research and studies
-            - Healthcare guidelines and best practices
-            
-            Input should be a search query related to health, medicine, or wellness."""
-
-            def _run(self, query: str) -> str:
-                """Execute the search with health context."""
-                # Add health-related context to the query if not already present
-                health_keywords = [
-                    "health",
-                    "medical",
-                    "medicine",
-                    "wellness",
-                    "healthcare",
-                ]
-                query_lower = query.lower()
-
-                # Check if query already contains health-related keywords
-                has_health_context = any(
-                    keyword in query_lower for keyword in health_keywords
-                )
-
-                # If no health context, add it
-                if not has_health_context:
-                    enhanced_query = f"{query} health medical"
-                else:
-                    enhanced_query = query
-
-                # Execute the search using the base Tavily tool
-                return base_tavily._run(enhanced_query)
-
-            async def _arun(self, query: str) -> str:
-                """Execute the search asynchronously with health context."""
-                # Add health-related context to the query if not already present
-                health_keywords = [
-                    "health",
-                    "medical",
-                    "medicine",
-                    "wellness",
-                    "healthcare",
-                ]
-                query_lower = query.lower()
-
-                # Check if query already contains health-related keywords
-                has_health_context = any(
-                    keyword in query_lower for keyword in health_keywords
-                )
-
-                # If no health context, add it
-                if not has_health_context:
-                    enhanced_query = f"{query} health medical"
-                else:
-                    enhanced_query = query
-
-                # Execute the search using the base Tavily tool
-                return await base_tavily._arun(enhanced_query)
-
-        tools.append(HealthTavilySearchTool())
-
-    # Convert multiply function to a LangChain tool
-    def multiply(a: int, b: int) -> int:
-        """Multiply a and b.
-
-        Args:
-            a: first int
-            b: second int
-        """
-        return a * b
-
-    multiply_tool = StructuredTool.from_function(multiply)
-    tools.append(multiply_tool)
 
     return tools
 
@@ -303,8 +192,7 @@ if __name__ == "__main__":
 
     async def main():
         """
-        Initialize the MCP chatbot node and run the agent conversation loop.
-        Similar to client.py but using the MCPChatbotNode directly.
+        Initialize the Doctor Chatbot node and run the agent conversation loop.
         """
         # Create LLM instance
         user_controls_input = {
@@ -314,15 +202,15 @@ if __name__ == "__main__":
         llm = OpenAiLLM(user_controls_input)
         llm = llm.get_base_llm()
 
-        # Load MCP tools
-        tools = await load_mcp_tools()
-        print(f"Tools loaded: {len(tools)}")
+        # Load doctor chatbot tools (patient and gmail only)
+        tools = await load_doctor_chatbot_tools()
+        print(f"Doctor chatbot tools loaded: {len(tools)}")
 
-        # Create MCPChatbotNode instance with tools
-        node = MCPChatbotNode(llm, tools=tools)
+        # Create DoctorChatbotNode instance with tools
+        node = DoctorChatbotNode(llm, tools=tools)
 
         # Default example
-        user_input = "Use preplexity to give me today's news in india?"
+        user_input = "Search for patients with diabetes"
         print("\n ----  USER  ---- \n\n", user_input)
         print("\n ----  ASSISTANT  ---- \n\n")
 
@@ -330,7 +218,7 @@ if __name__ == "__main__":
         state = {
             "messages": [
                 SystemMessage(
-                    content="You are Medi-Mind, a personal medical assistant. You help users manage their medical details, track health information, answer medical questions, and provide health-related guidance. Always be empathetic, professional, and prioritize user safety. Remind users that you are not a substitute for professional medical advice."
+                    content="You are Medi-Mind, a medical assistant for doctors. You help doctors manage patient information, search patient records, and send emails. Always be professional and maintain patient confidentiality."
                 ),
                 HumanMessage(content=user_input),
             ]
@@ -352,6 +240,7 @@ if __name__ == "__main__":
                 response_text = str(last_message)
 
             # Print the response
+            print(response_text)
         else:
             print("No response generated")
 
@@ -360,3 +249,4 @@ if __name__ == "__main__":
 
     nest_asyncio.apply()
     asyncio.run(main())
+

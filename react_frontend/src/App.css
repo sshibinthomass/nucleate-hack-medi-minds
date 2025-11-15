@@ -12,22 +12,167 @@ html {
   height: 100vh;
   width: 100vw;
   display: flex;
+  flex-direction: column;
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   background: linear-gradient(135deg, #e0f2fe 0%, rgba(240, 253, 250, 0.9) 45%, #f0fdf4 100%);
 }
 
-.sidebar {
-  width: 320px;
-  min-width: 260px;
-  padding: 32px 28px;
+.app__main-content {
+  flex: 1;
+  display: flex;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.topbar {
+  height: 80px;
+  min-height: 80px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.98) 0%, rgba(240, 253, 250, 0.95) 100%);
+  backdrop-filter: blur(18px);
+  border-bottom: 1px solid rgba(16, 185, 129, 0.2);
+  box-shadow: 0 2px 12px rgba(5, 150, 105, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 32px;
+  z-index: 10;
+}
+
+.topbar__datetime {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 16px;
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 12px;
+  border: 1px solid rgba(16, 185, 129, 0.15);
+  box-shadow: 0 2px 8px rgba(5, 150, 105, 0.06);
+}
+
+.topbar__datetime-icon {
+  font-size: 24px;
+  line-height: 1;
+}
+
+.topbar__datetime-info {
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 2px;
+}
+
+.topbar__datetime-date {
+  font-size: 13px;
+  font-weight: 600;
+  color: #059669;
+  line-height: 1.2;
+}
+
+.topbar__datetime-time {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  color: #64748b;
+  font-weight: 500;
+}
+
+.topbar__content {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.topbar__right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.topbar__title {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 700;
+  color: #059669;
+  background: linear-gradient(135deg, #059669 0%, #0d9488 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.topbar__subtitle {
+  margin: 0;
+  font-size: 12px;
+  font-weight: 500;
+  color: #6b7280;
+  letter-spacing: 0.3px;
+}
+
+.topbar__weather {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 16px;
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 12px;
+  border: 1px solid rgba(16, 185, 129, 0.15);
+  box-shadow: 0 2px 8px rgba(5, 150, 105, 0.06);
+}
+
+.topbar__weather-icon {
+  font-size: 24px;
+  line-height: 1;
+}
+
+.topbar__weather-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.topbar__weather-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.topbar__weather-city {
+  font-size: 13px;
+  font-weight: 600;
+  color: #64748b;
+  line-height: 1.2;
+}
+
+.topbar__weather-temp {
+  font-size: 16px;
+  font-weight: 700;
+  color: #059669;
+  line-height: 1.2;
+}
+
+.topbar__weather-details {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  color: #64748b;
+  font-weight: 500;
+}
+
+.sidebar {
+  width: 380px;
+  min-width: 320px;
+  padding: 36px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.95) 0%, rgba(240, 253, 250, 0.9) 100%);
   backdrop-filter: blur(18px);
   border-right: 1px solid rgba(16, 185, 129, 0.2);
   box-shadow: 6px 0 24px rgba(5, 150, 105, 0.08);
   transition: transform 0.3s ease, opacity 0.3s ease;
+  height: 100%;
+  overflow-y: auto;
+  box-sizing: border-box;
 }
 
 .sidebar__title {
@@ -52,7 +197,7 @@ html {
 .sidebar__form {
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  gap: 20px;
 }
 
 .sidebar__label {
@@ -67,10 +212,10 @@ html {
 }
 
 .sidebar__select {
-  padding: 10px 12px;
+  padding: 12px 14px;
   border-radius: 12px;
   border: 1px solid rgba(16, 185, 129, 0.25);
-  font-size: 14px;
+  font-size: 15px;
   appearance: none;
   background-color: rgba(255, 255, 255, 0.95);
   color: #0f172a;
@@ -139,31 +284,372 @@ html {
   font-size: 12px;
 }
 
+.health-widgets {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.health-widgets__row {
+  display: flex;
+  gap: 12px;
+  width: 100%;
+  align-items: stretch;
+}
+
+.health-widgets__row > .health-widget {
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+.health-widget {
+  flex: 1 1 0;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 14px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(240, 253, 250, 0.9) 100%);
+  border: 1px solid rgba(16, 185, 129, 0.2);
+  box-shadow: 0 4px 12px rgba(5, 150, 105, 0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  height: 85px;
+  min-height: 85px;
+  max-height: 85px;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+.health-widget--doctor {
+  align-items: flex-start;
+}
+
+.health-widget:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(5, 150, 105, 0.12);
+}
+
+.health-widget--water {
+  flex: 1 1 0;
+  height: 85px;
+  min-height: 85px;
+  max-height: 85px;
+  min-width: 0;
+}
+
+/* Doctor statistics widgets - larger size but compact */
+.health-widget--doctor {
+  height: 120px !important;
+  min-height: 120px !important;
+  max-height: 120px !important;
+  padding: 12px 18px 16px 18px !important;
+  gap: 12px !important;
+}
+
+.health-widget--doctor .health-widget__icon {
+  font-size: 32px;
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+  align-self: flex-start;
+  margin-top: 0;
+  padding-top: 0;
+}
+
+.health-widget--doctor .health-widget__label {
+  font-size: 8px;
+  height: 10px;
+  line-height: 10px;
+  margin-bottom: 2px;
+}
+
+.health-widget--doctor .health-widget__content {
+  gap: 4px;
+  flex: 1;
+  min-width: 0;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding-top: 0;
+  margin-top: 0;
+}
+
+.health-widget--doctor .health-widget__label {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+.health-widget--doctor .health-widget__value {
+  line-height: 1.3;
+  margin-top: 0;
+}
+
+/* Happy mood - warm, bright colors */
+.health-widget--happy {
+  background: linear-gradient(135deg, rgba(255, 245, 157, 0.95) 0%, rgba(255, 224, 130, 0.9) 100%);
+  border: 1px solid rgba(255, 193, 7, 0.3);
+  box-shadow: 0 4px 12px rgba(255, 193, 7, 0.15);
+}
+
+.health-widget--happy:hover {
+  box-shadow: 0 6px 16px rgba(255, 193, 7, 0.25);
+}
+
+.health-widget--happy .health-widget__value {
+  color: #f57c00;
+}
+
+/* Sad mood - cool, muted colors */
+.health-widget--sad {
+  background: linear-gradient(135deg, rgba(187, 222, 251, 0.95) 0%, rgba(144, 202, 249, 0.9) 100%);
+  border: 1px solid rgba(66, 165, 245, 0.3);
+  box-shadow: 0 4px 12px rgba(66, 165, 245, 0.15);
+}
+
+.health-widget--sad:hover {
+  box-shadow: 0 6px 16px rgba(66, 165, 245, 0.25);
+}
+
+.health-widget--sad .health-widget__value {
+  color: #1976d2;
+}
+
+/* Surprised mood - vibrant colors */
+.health-widget--surprised {
+  background: linear-gradient(135deg, rgba(243, 229, 245, 0.95) 0%, rgba(225, 190, 231, 0.9) 100%);
+  border: 1px solid rgba(186, 104, 200, 0.3);
+  box-shadow: 0 4px 12px rgba(186, 104, 200, 0.15);
+}
+
+.health-widget--surprised:hover {
+  box-shadow: 0 6px 16px rgba(186, 104, 200, 0.25);
+}
+
+.health-widget--surprised .health-widget__value {
+  color: #7b1fa2;
+}
+
+/* Angry mood widget - bold, red colors */
+.health-widget--angry {
+  background: linear-gradient(135deg, rgba(254, 215, 215, 0.95) 0%, rgba(252, 165, 165, 0.9) 100%);
+  border: 1px solid rgba(248, 113, 113, 0.3);
+  box-shadow: 0 4px 12px rgba(248, 113, 113, 0.15);
+}
+
+.health-widget--angry:hover {
+  box-shadow: 0 6px 16px rgba(248, 113, 113, 0.25);
+}
+
+.health-widget--angry .health-widget__value {
+  color: #b91c1c;
+}
+
+/* Alert styles for health metrics below preferred limits */
+.health-widget--alert {
+  background: linear-gradient(135deg, rgba(254, 226, 226, 0.95) 0%, rgba(252, 165, 165, 0.9) 100%);
+  border: 1px solid rgba(248, 113, 113, 0.4);
+  box-shadow: 0 4px 12px rgba(248, 113, 113, 0.2);
+  animation: alertBlink 2s ease-in-out infinite;
+}
+
+@keyframes alertBlink {
+  0%, 100% {
+    opacity: 1;
+    box-shadow: 0 4px 12px rgba(248, 113, 113, 0.2);
+  }
+  50% {
+    opacity: 0.85;
+    box-shadow: 0 4px 16px rgba(248, 113, 113, 0.4);
+  }
+}
+
+.health-widget__value--alert {
+  color: #dc2626 !important;
+  font-weight: 700;
+  animation: valueBlink 1.5s ease-in-out infinite;
+}
+
+@keyframes valueBlink {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+.health-widget__icon {
+  font-size: 28px;
+  line-height: 1;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+}
+
+@keyframes heartbeat {
+  0% {
+    transform: scale(1);
+  }
+  10% {
+    transform: scale(1.15);
+  }
+  20% {
+    transform: scale(1);
+  }
+  30% {
+    transform: scale(1.15);
+  }
+  40% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.health-widget__icon--heart {
+  animation: heartbeat 1.5s ease-in-out infinite;
+  transform-origin: center;
+}
+
+.health-widget__content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.health-widget--water .health-widget__content {
+  width: 100%;
+  gap: 6px;
+}
+
+.health-widget__label {
+  font-size: 9px;
+  font-weight: 600;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  height: 12px;
+  line-height: 12px;
+  display: flex;
+  align-items: center;
+}
+
+.health-widget__value {
+  font-size: 18px;
+  font-weight: 700;
+  color: #059669;
+  line-height: 1.1;
+  white-space: nowrap;
+  height: 22px;
+  display: flex;
+  align-items: center;
+}
+
+.health-widget__value-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  justify-content: flex-start;
+  height: 22px;
+  line-height: 1.1;
+  margin: 0;
+  padding: 0;
+}
+
+.health-widget--water .health-widget__label {
+  height: 12px;
+  margin-bottom: 0;
+}
+
+.health-widget--water .health-widget__value-row {
+  height: 22px;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+.health-widget--water .health-widget__value {
+  font-size: 18px;
+  font-weight: 700;
+  color: #059669;
+  line-height: 1.1;
+  white-space: nowrap;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+}
+
+.health-widget__button {
+  width: 24px;
+  height: 20px;
+  border-radius: 5px;
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  background: linear-gradient(135deg, #ffffff 0%, #f0fdf4 100%);
+  color: #059669;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  line-height: 1;
+  padding: 0;
+  margin: 0;
+  flex-shrink: 0;
+}
+
+.health-widget__button:hover {
+  background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+  border-color: rgba(16, 185, 129, 0.5);
+  transform: scale(1.05);
+}
+
+.health-widget__button:active {
+  transform: scale(0.95);
+}
+
 .chat-pane {
   flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 24px;
+  padding: 20px 24px 24px 24px;
   box-sizing: border-box;
   background: radial-gradient(circle at top right, rgba(14, 165, 233, 0.1), transparent 50%),
     radial-gradient(circle at bottom left, rgba(16, 185, 129, 0.12), transparent 45%);
+  overflow-y: auto;
 }
 
 .chat-box {
   width: 100%;
-  max-width: 1200px;
+  max-width: 1000px;
   flex: 1;
   background: rgba(255, 255, 255, 0.95);
   border-radius: 22px;
   box-shadow: 0 22px 60px -28px rgba(5, 150, 105, 0.15), 0 20px 45px -18px rgba(14, 165, 233, 0.1);
   border: 1px solid rgba(16, 185, 129, 0.15);
-  padding: 28px;
+  padding: 24px;
   display: flex;
   flex-direction: column;
   gap: 20px;
   min-height: 0;
   box-sizing: border-box;
+  max-height: calc(100vh - 120px);
 }
 
 .chat-header {
@@ -242,6 +728,7 @@ html {
   gap: 14px;
   overflow-y: auto;
   padding-right: 6px;
+  position: relative;
 }
 
 .chat-message {
@@ -266,6 +753,98 @@ html {
   align-self: flex-start;
   background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
   border-color: rgba(16, 185, 129, 0.3);
+}
+
+/* Happy mood chat message - warm, bright colors */
+.chat-message--assistant.chat-message--happy {
+  background: linear-gradient(135deg, #fff9c4 0%, #fff59d 100%) !important;
+  border-color: rgba(255, 193, 7, 0.5) !important;
+  color: #5d4037 !important;
+  box-shadow: 0 4px 12px rgba(255, 193, 7, 0.2) !important;
+}
+
+.chat-message--assistant.chat-message--happy *,
+.chat-message--assistant.chat-message--happy p,
+.chat-message--assistant.chat-message--happy span,
+.chat-message--assistant.chat-message--happy div {
+  color: #5d4037 !important;
+}
+
+/* Sad mood chat message - cool, muted colors */
+.chat-message--assistant.chat-message--sad {
+  background: linear-gradient(135deg, #bbdefb 0%, #90caf9 100%) !important;
+  border-color: rgba(66, 165, 245, 0.5) !important;
+  color: #0d47a1 !important;
+  box-shadow: 0 4px 12px rgba(66, 165, 245, 0.2) !important;
+}
+
+.chat-message--assistant.chat-message--sad *,
+.chat-message--assistant.chat-message--sad p,
+.chat-message--assistant.chat-message--sad span,
+.chat-message--assistant.chat-message--sad div {
+  color: #0d47a1 !important;
+}
+
+/* Surprised mood chat message - vibrant colors */
+.chat-message--assistant.chat-message--surprised {
+  background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%) !important;
+  border-color: rgba(186, 104, 200, 0.5) !important;
+  color: #4a148c !important;
+  box-shadow: 0 4px 12px rgba(186, 104, 200, 0.2) !important;
+}
+
+.chat-message--assistant.chat-message--surprised *,
+.chat-message--assistant.chat-message--surprised p,
+.chat-message--assistant.chat-message--surprised span,
+.chat-message--assistant.chat-message--surprised div {
+  color: #4a148c !important;
+}
+
+/* Angry mood chat message - bold, red colors */
+.chat-message--assistant.chat-message--angry {
+  background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%) !important;
+  border-color: rgba(248, 113, 113, 0.5) !important;
+  color: #991b1b !important;
+  box-shadow: 0 4px 12px rgba(248, 113, 113, 0.2) !important;
+}
+
+.chat-message--assistant.chat-message--angry *,
+.chat-message--assistant.chat-message--angry p,
+.chat-message--assistant.chat-message--angry span,
+.chat-message--assistant.chat-message--angry div {
+  color: #991b1b !important;
+}
+
+.chat-greeting {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  text-align: center;
+  opacity: 0.6;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.chat-greeting__line1 {
+  font-size: 48px;
+  font-weight: 700;
+  background: linear-gradient(135deg, #059669 0%, #0d9488 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  white-space: nowrap;
+}
+
+.chat-greeting__line2 {
+  font-size: 36px;
+  font-weight: 600;
+  color: #059669;
+  white-space: nowrap;
 }
 
 .chat-empty {
@@ -311,6 +890,38 @@ html {
   box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
 }
 
+.chat-file-input {
+  display: none;
+}
+
+.chat-file-button {
+  padding: 12px 16px;
+  border-radius: 12px;
+  background: rgba(5, 150, 105, 0.1);
+  color: #059669;
+  border: 1px solid rgba(16, 185, 129, 0.25);
+  font-size: 20px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 48px;
+  height: 48px;
+  box-sizing: border-box;
+}
+
+.chat-file-button:hover:not(:disabled) {
+  background: rgba(5, 150, 105, 0.15);
+  border-color: rgba(16, 185, 129, 0.4);
+  transform: translateY(-1px);
+}
+
+.chat-file-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
 .chat-button {
   padding: 12px 22px;
   border-radius: 12px;
@@ -340,4 +951,242 @@ html {
   padding: 12px 14px;
   font-size: 13px;
   margin-top: 8px;
+}
+
+/* Water Animation */
+.water-animation {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(14, 165, 233, 0.95);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+  pointer-events: none;
+  opacity: 0;
+  transform: scale(0.8);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.water-animation--show {
+  opacity: 1;
+  transform: scale(1);
+  animation: waterPop 0.5s ease-out;
+}
+
+.water-animation--hide {
+  opacity: 0;
+  transform: scale(1.2);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+@keyframes waterPop {
+  0% {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.water-animation__cup {
+  font-size: 120px;
+  animation: waterBounce 0.6s ease-out;
+  margin-bottom: 20px;
+  filter: drop-shadow(0 10px 30px rgba(255, 255, 255, 0.3));
+}
+
+@keyframes waterBounce {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  25% {
+    transform: translateY(-20px) rotate(-10deg);
+  }
+  75% {
+    transform: translateY(-10px) rotate(10deg);
+  }
+}
+
+.water-animation__message {
+  font-size: 32px;
+  font-weight: 700;
+  color: #ffffff;
+  text-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  animation: fadeInUp 0.6s ease-out 0.2s both;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Mood Animation */
+.mood-animation {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+  pointer-events: none;
+  opacity: 0;
+  transform: scale(0.8);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.mood-animation--show {
+  opacity: 1;
+  transform: scale(1);
+  animation: moodPop 0.5s ease-out;
+}
+
+.mood-animation--hide {
+  opacity: 0;
+  transform: scale(1.2);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+@keyframes moodPop {
+  0% {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Happy mood animation - warm, bright colors */
+.mood-animation--happy {
+  background: linear-gradient(135deg, rgba(255, 245, 157, 0.98) 0%, rgba(255, 224, 130, 0.98) 100%);
+}
+
+.mood-animation--happy .mood-animation__emoji {
+  animation: moodBounce 0.6s ease-out;
+  filter: drop-shadow(0 10px 30px rgba(255, 193, 7, 0.4));
+}
+
+.mood-animation--happy .mood-animation__mood-name {
+  color: #f57c00;
+}
+
+.mood-animation--happy .mood-animation__quote {
+  color: #5d4037;
+}
+
+/* Sad mood animation - cool, muted colors */
+.mood-animation--sad {
+  background: linear-gradient(135deg, rgba(187, 222, 251, 0.98) 0%, rgba(144, 202, 249, 0.98) 100%);
+}
+
+.mood-animation--sad .mood-animation__emoji {
+  animation: moodBounce 0.6s ease-out;
+  filter: drop-shadow(0 10px 30px rgba(66, 165, 245, 0.4));
+}
+
+.mood-animation--sad .mood-animation__mood-name {
+  color: #1976d2;
+}
+
+.mood-animation--sad .mood-animation__quote {
+  color: #0d47a1;
+}
+
+/* Surprised mood animation - vibrant colors */
+.mood-animation--surprised {
+  background: linear-gradient(135deg, rgba(243, 229, 245, 0.98) 0%, rgba(225, 190, 231, 0.98) 100%);
+}
+
+.mood-animation--surprised .mood-animation__emoji {
+  animation: moodBounce 0.6s ease-out;
+  filter: drop-shadow(0 10px 30px rgba(186, 104, 200, 0.4));
+}
+
+.mood-animation--surprised .mood-animation__mood-name {
+  color: #7b1fa2;
+}
+
+.mood-animation--surprised .mood-animation__quote {
+  color: #4a148c;
+}
+
+/* Angry mood animation - bold, red colors */
+.mood-animation--angry {
+  background: linear-gradient(135deg, rgba(254, 226, 226, 0.98) 0%, rgba(254, 202, 202, 0.98) 100%);
+}
+
+.mood-animation--angry .mood-animation__emoji {
+  animation: moodBounce 0.6s ease-out;
+  filter: drop-shadow(0 10px 30px rgba(239, 68, 68, 0.4));
+}
+
+.mood-animation--angry .mood-animation__mood-name {
+  color: #dc2626;
+}
+
+.mood-animation--angry .mood-animation__quote {
+  color: #7f1d1d;
+}
+
+.mood-animation__emoji {
+  font-size: 120px;
+  margin-bottom: 20px;
+}
+
+@keyframes moodBounce {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg) scale(1);
+  }
+  25% {
+    transform: translateY(-20px) rotate(-10deg) scale(1.1);
+  }
+  50% {
+    transform: translateY(-10px) rotate(5deg) scale(1.05);
+  }
+  75% {
+    transform: translateY(-15px) rotate(10deg) scale(1.08);
+  }
+}
+
+.mood-animation__mood-name {
+  font-size: 48px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  text-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  animation: fadeInUp 0.6s ease-out 0.2s both;
+}
+
+.mood-animation__quote {
+  font-size: 28px;
+  font-weight: 600;
+  text-align: center;
+  max-width: 600px;
+  padding: 0 20px;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  animation: fadeInUp 0.6s ease-out 0.4s both;
+  line-height: 1.4;
 }

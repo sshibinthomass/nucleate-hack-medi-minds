@@ -2,6 +2,7 @@
 .env
 *.env
 backend/.env
+backend/gmail_token.json
 **/.env
 
 # Python
@@ -63,4 +64,8 @@ logs/
 # Temporary files
 *.tmp
 *.temp
+
+# Google OAuth client secrets
+**/client_secret*.json
+backend/client_secret*.json
 

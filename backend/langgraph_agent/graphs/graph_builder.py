@@ -13,6 +13,7 @@ from langgraph_agent.states.chatbotState import (
     ChatbotState,
 )  # ignoring the import error
 from langgraph_agent.graphs.mcp_chatbot_graph import mcp_chatbot_build_graph
+from langgraph_agent.graphs.doctor_chatbot_graph import doctor_chatbot_build_graph
 
 dotenv.load_dotenv()
 
@@ -30,13 +31,15 @@ class GraphBuilder:
         Sets up the graph for the selected use case.
 
         Args:
-            usecase: The use case to set up ("mcp_chatbot")
-            tools: Optional list of tools for MCP chatbot
+            usecase: The use case to set up ("mcp_chatbot" or "doctor_chatbot")
+            tools: Optional list of tools for the chatbot
         """
         if usecase == "mcp_chatbot":
             mcp_chatbot_build_graph(self.graph_builder, self.llm, tools=tools)
+        elif usecase == "doctor_chatbot":
+            doctor_chatbot_build_graph(self.graph_builder, self.llm, tools=tools)
         else:
-            raise ValueError(f"Unsupported use case: {usecase}. Only 'mcp_chatbot' is supported.")
+            raise ValueError(f"Unsupported use case: {usecase}. Supported use cases: 'mcp_chatbot', 'doctor_chatbot'.")
 
         return self.graph_builder.compile()
 

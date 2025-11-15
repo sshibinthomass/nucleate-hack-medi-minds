@@ -14,19 +14,24 @@
             ],
             "transport": "stdio"
         },
-        "filesystem": {
-            "command": "npx",
+        "patient_specialist": {
+            "command": "python",
             "args": [
-                "-y",
-                "@modelcontextprotocol/server-filesystem",
-                "${MCP_FILESYSTEM_DIR}"
+                "/Users/qtf4195/nucleate-hack-medi-minds/backend/langgraph_agent/mcps/local_servers/patient_specialist_tool.py"
             ],
             "transport": "stdio"
         },
-        "git": {
-            "command": "uvx",
+        "health_data": {
+            "command": "python",
             "args": [
-                "mcp-server-git"
+                "/Users/qtf4195/nucleate-hack-medi-minds/backend/langgraph_agent/mcps/local_servers/health_data_tool.py"
+            ],
+            "transport": "stdio"
+        },
+        "gmail": {
+            "command": "python",
+            "args": [
+                "/Users/qtf4195/nucleate-hack-medi-minds/backend/langgraph_agent/mcps/local_servers/gmail_tool.py"
             ],
             "transport": "stdio"
         }
