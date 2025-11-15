@@ -15,7 +15,7 @@ export default function App() {
   const [sessionId, setSessionId] = useState("default");
   const [provider, setProvider] = useState("groq");
   const [model, setModel] = useState(() => MODEL_OPTIONS.groq[0].value);
-  const [useCase, setUseCase] = useState(() => USE_CASES[0]?.value ?? "basic_chatbot");
+  const [useCase, setUseCase] = useState(() => USE_CASES[0]?.value ?? "mcp_chatbot");
   const [backendStatus, setBackendStatus] = useState("checking");
   const [backendStatusMessage, setBackendStatusMessage] = useState("Checking backend...");
   const [sidebarOpen, setSidebarOpen] = useState(true);

@@ -67,7 +67,9 @@ async def initialize_chatbot():
         llm = GroqLLM(user_controls_input)
         llm = llm.get_base_llm()
         graph_builder = GraphBuilder(llm, user_controls_input)
-        chatbot_graph = await graph_builder.setup_graph("basic_chatbot")
+        # Load MCP tools for initialization
+        tools = await load_mcp_tools()
+        chatbot_graph = await graph_builder.setup_graph("mcp_chatbot", tools=tools)
         return True
     except Exception as e:
         print(f"Error initializing chatbot: {e}")
@@ -123,12 +125,12 @@ class SimpleChatRequest(BaseModel):
     session_id: Optional[str] = "default"
     provider: Optional[str] = "groq"  # groq | openai | gemini | ollama
     selected_llm: Optional[str] = None
-    use_case: Optional[str] = "basic_chatbot"
+    use_case: Optional[str] = "mcp_chatbot"
 
 
 class ResetChatRequest(BaseModel):
     session_id: Optional[str] = "default"
-    use_case: Optional[str] = "basic_chatbot"
+    use_case: Optional[str] = "mcp_chatbot"
 
 
 @app.get("/")
@@ -190,17 +192,14 @@ async def chat_simple(request: SimpleChatRequest):
                 status_code=400, detail=f"Unsupported provider: {provider}"
             )
 
-        use_case = request.use_case or "basic_chatbot"
+        use_case = request.use_case or "mcp_chatbot"
 
         # Build a lightweight graph for this request with the chosen LLM
         try:
             graph_builder = GraphBuilder(llm, {"selected_llm": selected_llm or ""})
 
-            # For MCP chatbot, use pre-loaded tools
-            tools = None
-            if use_case == "mcp_chatbot":
-                # Use globally loaded tools (loaded once at startup)
-                tools = mcp_tools if mcp_tools is not None else await load_mcp_tools()
+            # Use pre-loaded MCP tools (loaded once at startup)
+            tools = mcp_tools if mcp_tools is not None else await load_mcp_tools()
 
             graph = await graph_builder.setup_graph(use_case, tools=tools)
         except ValueError as graph_error:
@@ -253,7 +252,7 @@ async def chat_simple(request: SimpleChatRequest):
 @app.post("/chat/reset")
 async def reset_chat(request: ResetChatRequest):
     session_id = request.session_id or "default"
-    use_case = request.use_case or "basic_chatbot"
+    use_case = request.use_case or "mcp_chatbot"
     session_key = f"{session_id}::{use_case}"
     session_store.pop(session_key, None)
     return {"status": "success"}

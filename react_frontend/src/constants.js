@@ -1,6 +1,5 @@
   export const USE_CASES = [
-    { value: "mcp_chatbot", label: "Medical Assistant" },
-    { value: "basic_chatbot", label: "Health Tracker" }
+    { value: "mcp_chatbot", label: "Medical Assistant" }
 ];
 
 export const MODEL_OPTIONS = {

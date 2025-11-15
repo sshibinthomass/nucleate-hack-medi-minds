@@ -12,7 +12,6 @@ if str(project_root) not in sys.path:
 from langgraph_agent.states.chatbotState import (
     ChatbotState,
 )  # ignoring the import error
-from langgraph_agent.graphs.basic_chatbot_graph import basic_chatbot_build_graph
 from langgraph_agent.graphs.mcp_chatbot_graph import mcp_chatbot_build_graph
 
 dotenv.load_dotenv()
@@ -31,15 +30,13 @@ class GraphBuilder:
         Sets up the graph for the selected use case.
 
         Args:
-            usecase: The use case to set up ("basic_chatbot", "mcp_chatbot", etc.)
+            usecase: The use case to set up ("mcp_chatbot")
             tools: Optional list of tools for MCP chatbot
         """
-        if usecase == "basic_chatbot":
-            basic_chatbot_build_graph(self.graph_builder, self.llm)
-        elif usecase == "mcp_chatbot":
+        if usecase == "mcp_chatbot":
             mcp_chatbot_build_graph(self.graph_builder, self.llm, tools=tools)
         else:
-            raise ValueError(f"Unsupported use case: {usecase}")
+            raise ValueError(f"Unsupported use case: {usecase}. Only 'mcp_chatbot' is supported.")
 
         return self.graph_builder.compile()
 
